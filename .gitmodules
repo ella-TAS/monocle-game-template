@@ -1,0 +1,6 @@
+[submodule "Nez"]
+	path = Nez
+	url = https://github.com/prime31/Nez
+[submodule "FNA"]
+	path = FNA
+	url = https://github.com/FNA-XNA/FNA

@@ -1,0 +1,36 @@
+<Project Sdk="Microsoft.NET.Sdk">
+    <PropertyGroup>
+        <OutputType>Exe</OutputType>
+        <TargetFramework>net8.0</TargetFramework>
+        <RootNamespace>Gamespace</RootNamespace>
+        <AssemblyName>GameName</AssemblyName>
+        <LangVersion>latest</LangVersion>
+        <ImplicitUsings>disable</ImplicitUsings>
+        <PublishSingleFile>true</PublishSingleFile>
+    </PropertyGroup>
+
+    <ItemGroup>
+        <ProjectReference Include="../FNA/FNA.Core.csproj" />
+        <ProjectReference Include="../Nez/Nez.Portable/Nez.FNA.Core.csproj" />
+    </ItemGroup>
+
+    <!-- Include the Content directory (except for .fx files, since we use .fxb at runtime) -->
+    <ItemGroup>
+        <Content Include="Content/**/*" Exclude="**/*.fx">
+            <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+        </Content>
+    </ItemGroup>
+
+    <!-- Nez default content
+    <ItemGroup>
+        <Content Include="..\Nez\DefaultContent\FNAEffects\**">
+            <Link>Content\nez\effects\%(RecursiveDir)%(Filename)%(Extension)</Link>
+            <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+        </Content>
+        <Content Include="..\Nez\DefaultContent\textures\**">
+            <Link>Content\nez\textures\%(RecursiveDir)%(Filename)%(Extension)</Link>
+            <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+        </Content>
+    </ItemGroup>
+    -->
+</Project>

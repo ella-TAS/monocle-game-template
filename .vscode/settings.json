@@ -1,0 +1,14 @@
+{
+    "files.trimTrailingWhitespace": true,
+    "editor.formatOnSave": true,
+    "dotnet.server.useOmnisharp": true,
+    "dotnet.autoInsert.enableAutoInsert": false,
+    "dotnet.preferCSharpExtension": true,
+    "[csharp]": {
+        "editor.defaultFormatter": "ms-dotnettools.csharp",
+        "editor.codeActionsOnSave": [
+            "source.organizeImports",
+            "source.fixAll"
+        ]
+    },
+}
