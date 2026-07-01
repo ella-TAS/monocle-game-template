@@ -1,3 +1,7 @@
+/fnalibs/
+/util/fxc/
+*.fxb
+
 # Build results
 [Dd]ebug/
 [Dd]ebugPublic/

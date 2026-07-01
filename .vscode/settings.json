@@ -1,9 +1,11 @@
 {
-    "files.trimTrailingWhitespace": true,
     "editor.formatOnSave": true,
+    "files.trimTrailingWhitespace": true,
+    "files.trimFinalNewlines": true,
+    "files.insertFinalNewline": true,
     "dotnet.server.useOmnisharp": true,
     "dotnet.autoInsert.enableAutoInsert": false,
-    "dotnet.preferCSharpExtension": true,
+    "dotnet.preferCSharpExtension": false,
     "[csharp]": {
         "editor.defaultFormatter": "ms-dotnettools.csharp",
         "editor.codeActionsOnSave": [

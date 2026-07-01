@@ -1,21 +1,12 @@
-using Microsoft.Xna.Framework;
-using Microsoft.Xna.Framework.Graphics;
+using Gamespace.Entities;
 using Nez;
-using Nez.Sprites;
 
-namespace Gamespace;
+namespace Gamespace.Scenes;
 
-public class DefaultScene : Scene {
+public class GameScene : Scene {
     public override void Initialize() {
-        SetDesignResolution(Screen.Width, Screen.Height, Scene.SceneResolutionPolicy.None);
+        SetDesignResolution(Screen.Width, Screen.Height, SceneResolutionPolicy.None);
 
-        CreateEntity("demo imgui draw commands")
-            .SetPosition(new Vector2(150, 150))
-            .AddComponent(new PrototypeSpriteRenderer(20, 20));
-
-        var logo = Content.Load<Texture2D>("nez-logo-black");
-        CreateEntity("logo")
-            .SetPosition(Screen.Center)
-            .AddComponent(new SpriteRenderer(logo));
+        AddEntity(new Player());
     }
 }

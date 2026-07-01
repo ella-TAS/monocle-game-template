@@ -1,0 +1,8 @@
+{
+    "Log": {
+        "scope": "csharp",
+        "prefix": "log",
+        "body": "Console.WriteLine($\"{$0}\");",
+        "description": "Log output to console"
+    }
+}

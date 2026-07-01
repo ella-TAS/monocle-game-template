@@ -1,20 +1,19 @@
-﻿using Nez;
+﻿using Gamespace.Scenes;
+using Microsoft.Xna.Framework.Graphics;
+using Nez;
 
 namespace Gamespace;
 
-class Game1 : Core {
-    public Game1() : base() {
-        // scaled pixel art games
-        System.Environment.SetEnvironmentVariable("FNA_OPENGL_BACKBUFFER_SCALE_NEAREST", "1");
+class Game : Core {
+    public Game() {
+        // pixel art upscaling
+        Environment.SetEnvironmentVariable("FNA_OPENGL_BACKBUFFER_SCALE_NEAREST", "1");
+        DefaultSamplerState = SamplerState.PointClamp;
     }
 
     override protected void Initialize() {
         base.Initialize();
 
-        Scene = new DefaultScene();
-
-#if DEBUG
-        System.Diagnostics.Debug.Listeners.Add(new System.Diagnostics.TextWriterTraceListener(System.Console.Out));
-#endif
+        Scene = new GameScene();
     }
 }
