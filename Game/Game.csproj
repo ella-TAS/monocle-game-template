@@ -1,7 +1,7 @@
 <Project Sdk="Microsoft.NET.Sdk">
     <PropertyGroup>
         <OutputType>Exe</OutputType>
-        <TargetFramework>net8.0</TargetFramework>
+        <TargetFramework>net10.0</TargetFramework>
         <RootNamespace>Gamespace</RootNamespace>
         <AssemblyName>Gamespace</AssemblyName>
         <LangVersion>latest</LangVersion>
@@ -11,12 +11,11 @@
     </PropertyGroup>
 
     <ItemGroup>
-        <ProjectReference Include="../FNA/FNA.Core.csproj" />
-        <ProjectReference Include="../Nez/Nez.Portable/Nez.FNA.Core.csproj" />
+        <ProjectReference Include="../monocle-engine/Monocle.csproj" />
     </ItemGroup>
 
     <ItemGroup>
-        <Content Include="Content/**/*" Exclude="**/*.fx">
+        <Content Include="Content/**/*" Exclude="**/*.fx;Content/Graphics/**/*">
             <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
         </Content>
     </ItemGroup>

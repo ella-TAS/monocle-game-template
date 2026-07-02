@@ -1,12 +1,10 @@
 using Gamespace.Entities;
-using Nez;
+using Monocle;
 
 namespace Gamespace.Scenes;
 
 public class GameScene : Scene {
-    public override void Initialize() {
-        SetDesignResolution(Screen.Width, Screen.Height, SceneResolutionPolicy.None);
-
-        AddEntity(new Player());
+    public override void Begin() {
+        Add(new Player());
     }
 }

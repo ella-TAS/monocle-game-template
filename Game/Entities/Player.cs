@@ -1,19 +1,15 @@
-using Gamespace.Util;
-using Microsoft.Xna.Framework.Graphics;
-using Nez;
-using Nez.Sprites;
+using Monocle;
 
 namespace Gamespace.Entities;
 
 public class Player : Entity {
-    public Player() : base("player") {
-        Texture2D moonTex = Core.Content.LoadTexture("Graphics/heart");
-        AddComponent(new SpriteRenderer(moonTex));
+    public Player() {
+
     }
 
     public override void Update() {
         base.Update();
 
-        Position = Position.Approach(Input.MousePosition, 1f);
+        Position = Position.Approach(MInput.Mouse.Position, 1f);
     }
 }

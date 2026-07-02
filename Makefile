@@ -1,9 +1,8 @@
 fnalibs_source=https://nightly.link/FNA-XNA/fnalibs-dailies/workflows/ci/main
 fnalibs_wasm_source=https://github.com/r58Playz/FNA-WASM-Build/releases/latest/download
-fxc_source=https://tail.snipundercover.ovh/public/fxc-purrtable
 
-publish_linux=Game/bin/Release/net8.0/linux-x64/publish
-publish_win=Game/bin/Release/net8.0/win-x64/publish
+publish_linux=Game/bin/Release/net10.0/linux-x64/publish
+publish_win=Game/bin/Release/net10.0/win-x64/publish
 
 FX := $(wildcard Game/Content/Effects/*.fx)
 FXC := $(FX:.fx=.fxc)
@@ -48,16 +47,18 @@ qa:
 	# QA PASSED #
 	#############
 
-setup: git-submodule-reset
+setup:
 	# check that basic tools exist
 	wget -V
 	zip -v
 	unzip -v
-	git -v
 	python3 -V
+	git -v
+	# initialize submodules
+	make git-submodule-reset
 	# install required tools
 	sudo apt install -y dotnet-sdk-10.0
-	sudo apt install -y dotnet-runtime-8.0
+	sudo apt install -y dotnet-runtime-10.0
 	sudo apt install -y wine
 	# download required files
 	make get-libs
