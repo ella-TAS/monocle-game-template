@@ -2,11 +2,29 @@ fnalibs_source=https://nightly.link/FNA-XNA/fnalibs-dailies/workflows/ci/main
 fnalibs_wasm_source=https://github.com/r58Playz/FNA-WASM-Build/releases/latest/download
 fxc_source=https://tail.snipundercover.ovh/public/fxc-purrtable
 
+publish_linux=Game/bin/Release/net8.0/linux-x64/publish
+publish_win=Game/bin/Release/net8.0/win-x64/publish
+
 FX := $(wildcard Game/Content/Effects/*.fx)
 FXC := $(FX:.fx=.fxc)
 
-watch: $(FXC)
+watch: artifacts
 	LD_LIBRARY_PATH="$(PWD)/fnalibs/lib64/" dotnet watch --project Game/Game.csproj
+
+publish-linux: prepare-publish
+	rm -rf $(publish_linux)
+	dotnet publish Game/Game.csproj -c Release -r linux-x64 --self-contained true
+	cp fnalibs/lib64/* $(publish_linux)/
+	chmod +x $(publish_linux)/Gamespace
+
+publish-win: prepare-publish
+	rm -rf $(publish_win)
+	dotnet publish Game/Game.csproj -c Release -r win-x64 --self-contained true
+	cp fnalibs/x64/* $(publish_win)/
+
+prepare-publish: artifacts git-submodule-reset qa
+artifacts: $(FXC)
+	# All artifacts up-to-date
 
 Game/Content/Effects/%.fxc: Game/Content/Effects/%.fx
 	wine util/fxc/fxc.exe /T fx_2_0 $< /Fo $@
@@ -25,15 +43,20 @@ qa:
 	# QA PASSED #
 	#############
 
-setup: git-submodule-reset get-libs get-fxc
-	sudo apt install -y dotnet-sdk-10.0
-	sudo apt install -y dotnet-runtime-8.0
-	sudo apt install -y wine
-	# check that wget, unzip and python3 exist
+setup: git-submodule-reset
+	# check that basic tools exist
 	wget -V
+	zip -v
 	unzip -v
 	git -v
 	python3 -V
+	# install required tools
+	sudo apt install -y dotnet-sdk-10.0
+	sudo apt install -y dotnet-runtime-8.0
+	sudo apt install -y wine
+	# download required files
+	make get-libs
+	make get-fxc
 	# for hot reloading
 	sudo sysctl fs.inotify.max_user_instances=1024
 	####################

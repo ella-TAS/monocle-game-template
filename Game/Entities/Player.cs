@@ -6,7 +6,7 @@ using Nez.Sprites;
 namespace Gamespace.Entities;
 
 public class Player : Entity {
-    public Player() {
+    public Player() : base("player") {
         Texture2D moonTex = Core.Content.LoadTexture("Graphics/heart");
         AddComponent(new SpriteRenderer(moonTex));
     }
