@@ -12,14 +12,20 @@ Game/Content/Effects/%.fxc: Game/Content/Effects/%.fx
 	wine util/fxc/fxc.exe /T fx_2_0 $< /Fo $@
 
 clean:
-	find . -name obj -type d -exec rm -rf {} +
-	find . -name bin -type d -exec rm -rf {} +
+	find . -name "obj" -type d -exec rm -rf {} +
+	find . -name "bin" -type d -exec rm -rf {} +
 
 qa:
-	# namespace matches folder structure
-	# class name matches file name
+	@failed=0; \
+	for f in $$(find Game/ -not -path "Game/obj/*" -name '*.cs'); do \
+		python3 util/quality_assurance.py "$$f" || failed=1; \
+	done; \
+	exit $$failed
+	#############
+	# QA PASSED #
+	#############
 
-setup: update-deps get-fxc
+setup: git-submodule-reset get-libs get-fxc
 	sudo apt install -y dotnet-sdk-10.0
 	sudo apt install -y dotnet-runtime-8.0
 	sudo apt install -y wine
@@ -34,12 +40,10 @@ setup: update-deps get-fxc
 	# SETUP SUCCESSFUL #
 	####################
 
-update-deps: get-libs git-update
-
-git-update:
+git-submodule-reset:
 	git submodule update --init --recursive
 
-git-update-pull: git-update
+git-submodule-pull: git-submodule-reset
 	git submodule update --remote
 
 get-libs:
@@ -48,6 +52,7 @@ get-libs:
 	make get-libs-main
 	make get-libs-wasm
 	# make get-libs-apple
+	# FNAlibs download successful
 
 get-libs-main:
 	wget $(fnalibs_source)/fnalibs.zip -O fnalibs/fnalibs.zip

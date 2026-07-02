@@ -7,6 +7,7 @@
         <LangVersion>latest</LangVersion>
         <ImplicitUsings>enable</ImplicitUsings>
         <PublishSingleFile>true</PublishSingleFile>
+        <NoWarn>IDE0017;IDE0028;IDE0090;IDE0220;IDE0290;IDE1006;CA2211</NoWarn>
     </PropertyGroup>
 
     <ItemGroup>

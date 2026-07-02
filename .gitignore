@@ -1,5 +1,5 @@
-/fnalibs/
-/util/fxc/
+/fnalibs
+/util/fxc
 *.fxb
 
 # Build results
