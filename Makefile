@@ -21,16 +21,26 @@ qa:
 
 setup: update-deps get-fxc
 	sudo apt install -y dotnet-sdk-10.0
-	sudo apt install -y doD3DCompiler_43.dlltnet-runtime-8.0
+	sudo apt install -y dotnet-runtime-8.0
 	sudo apt install -y wine
+	# check that wget, unzip and python3 exist
+	wget -V
+	unzip -v
+	git -v
+	python3 -V
 	# for hot reloading
 	sudo sysctl fs.inotify.max_user_instances=1024
+	####################
+	# SETUP SUCCESSFUL #
+	####################
 
 update-deps: get-libs git-update
 
 git-update:
-	git submodule update --init --remote
 	git submodule update --init --recursive
+
+git-update-pull: git-update
+	git submodule update --remote
 
 get-libs:
 	mkdir -p fnalibs
