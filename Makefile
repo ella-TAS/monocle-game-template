@@ -22,14 +22,19 @@ publish-win: prepare-publish
 	dotnet publish Game/Game.csproj -c Release -r win-x64 --self-contained true
 	cp fnalibs/x64/* $(publish_win)/
 
-prepare-publish: artifacts git-submodule-reset qa
-artifacts: $(FXC)
+prepare-publish: qa artifacts git-submodule-reset clean
+
+artifacts: $(FXC) crunch
 	# All artifacts up-to-date
 
 Game/Content/Effects/%.fxc: Game/Content/Effects/%.fx
 	wine util/fxc/fxc.exe /T fx_2_0 $< /Fo $@
 
+crunch:
+	util/crunch Game/Content/Atlases/ Game/Content/Graphics/ -d
+
 clean:
+	rm -f Game/Content/Atlases/.hash
 	find . -name "obj" -type d -exec rm -rf {} +
 	find . -name "bin" -type d -exec rm -rf {} +
 
@@ -56,7 +61,6 @@ setup: git-submodule-reset
 	sudo apt install -y wine
 	# download required files
 	make get-libs
-	make get-fxc
 	# for hot reloading
 	sudo sysctl fs.inotify.max_user_instances=1024
 	####################
@@ -94,8 +98,3 @@ get-libs-wasm:
 	wget $(fnalibs_wasm_source)/FNA3D.a -O fnalibs/wasm/FNA3D.a
 	wget $(fnalibs_wasm_source)/libmojoshader.a -O fnalibs/wasm/libmojoshader.a
 	wget $(fnalibs_wasm_source)/SDL3.a -O fnalibs/wasm/SDL3.a
-
-get-fxc:
-	mkdir -p util/fxc
-	wget $(fxc_source)/D3DCompiler_43.dll -O util/fxc/D3DCompiler_43.dll
-	wget $(fxc_source)/fxc.exe -O util/fxc/fxc.exe

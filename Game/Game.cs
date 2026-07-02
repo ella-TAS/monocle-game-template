@@ -5,7 +5,7 @@ using Nez;
 namespace Gamespace;
 
 class Game : Core {
-    public Game() {
+    public Game() : base(contentDirectory: AppContext.BaseDirectory + "/Content") {
         // pixel art upscaling
         Environment.SetEnvironmentVariable("FNA_OPENGL_BACKBUFFER_SCALE_NEAREST", "1");
         DefaultSamplerState = SamplerState.PointClamp;

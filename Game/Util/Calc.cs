@@ -7,11 +7,12 @@ using System.Globalization;
 using System.Reflection;
 using System.Text;
 using System.Xml;
-using System.Xml.Serialization;
 
 namespace Gamespace.Util;
 
 public static class Calc {
+    public const float EPSILON = 0.00001f;
+
     #region Enums
 
     public static int EnumLength(Type e) {
@@ -628,29 +629,12 @@ public static class Calc {
         return new Vector2(Math.Sign(vec.X), Math.Sign(vec.Y));
     }
 
-    public static Vector2 SafeNormalize(this Vector2 vec) {
-        return SafeNormalize(vec, Vector2.Zero);
-    }
-
-    public static Vector2 SafeNormalize(this Vector2 vec, float length) {
-        return SafeNormalize(vec, Vector2.Zero, length);
-    }
-
-    public static Vector2 SafeNormalize(this Vector2 vec, Vector2 ifZero) {
-        if (vec == Vector2.Zero)
-            return ifZero;
-        else {
-            vec.Normalize();
-            return vec;
-        }
-    }
-
-    public static Vector2 SafeNormalize(this Vector2 vec, Vector2 ifZero, float length) {
-        if (vec == Vector2.Zero)
+    public static Vector2 SafeNormalize(this Vector2 vec, float length = 1f, Vector2 ifZero = default) {
+        float magnitude = vec.Length();
+        if (magnitude <= EPSILON) {
             return ifZero * length;
-        else {
-            vec.Normalize();
-            return vec * length;
+        } else {
+            return vec / magnitude * length;
         }
     }
 
@@ -827,7 +811,7 @@ public static class Calc {
     }
 
     public static Vector2 Approach(Vector2 val, Vector2 target, float maxMove) {
-        if (maxMove == 0 || val == target)
+        if (maxMove <= 0 || val == target)
             return val;
 
         Vector2 diff = target - val;
@@ -836,8 +820,7 @@ public static class Calc {
         if (length < maxMove)
             return target;
         else {
-            diff.Normalize();
-            return val + diff * maxMove;
+            return val + diff.SafeNormalize() * maxMove;
         }
     }
 

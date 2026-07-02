@@ -3,8 +3,6 @@ using Microsoft.Xna.Framework;
 namespace Gamespace.Util;
 
 public static class Vector2Ext {
-    private const float EPSILON = 0.00001f;
-
     public static Vector2 Approach(this Vector2 val, Vector2 target, float maxMove) {
         return Calc.Approach(val, target, maxMove);
     }
