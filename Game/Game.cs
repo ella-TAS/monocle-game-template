@@ -8,7 +8,7 @@ namespace Gamespace;
 class Game : Engine {
     public Game() : base(320, 180, 1280, 720, "Gamespace", false) {
         Window.AllowUserResizing = false;
-        IsMouseVisible = false;
+        IsMouseVisible = true;
         ExitOnEscapeKeypress = false;
         IsFixedTimeStep = true;
         TargetElapsedTime = TimeSpan.FromSeconds(1.0 / 60.0);

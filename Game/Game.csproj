@@ -19,13 +19,4 @@
             <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
         </Content>
     </ItemGroup>
-
-    <!-- Nez default content
-    <ItemGroup>
-        <Content Include="..\Nez\DefaultContent\FNAEffects\**">
-            <Link>Content\nez\effects\%(RecursiveDir)%(Filename)%(Extension)</Link>
-            <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-        </Content>
-    </ItemGroup>
-    -->
 </Project>

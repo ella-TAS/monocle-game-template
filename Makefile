@@ -4,8 +4,8 @@ fnalibs_wasm_source=https://github.com/r58Playz/FNA-WASM-Build/releases/latest/d
 publish_linux=Game/bin/Release/net10.0/linux-x64/publish
 publish_win=Game/bin/Release/net10.0/win-x64/publish
 
-FX := $(wildcard Game/Content/Effects/*.fx)
-FXC := $(FX:.fx=.fxc)
+FX := $(wildcard Game/Content/Effects/*.fx) $(wildcard Game/Content/Effects/Nez/*.fx)
+FXB := $(FX:.fx=.fxb)
 
 watch: artifacts
 	LD_LIBRARY_PATH="$(PWD)/fnalibs/lib64/" dotnet watch --project Game/Game.csproj
@@ -23,10 +23,13 @@ publish-win: prepare-publish
 
 prepare-publish: qa artifacts git-submodule-reset clean
 
-artifacts: $(FXC) crunch
+artifacts: $(FXB) crunch
 	# All artifacts up-to-date
 
-Game/Content/Effects/%.fxc: Game/Content/Effects/%.fx
+Game/Content/Effects/%.fxb: Game/Content/Effects/%.fx
+	wine util/fxc/fxc.exe /T fx_2_0 $< /Fo $@
+
+Game/Content/Effects/Nez/%.fxb: Game/Content/Effects/Nez/%.fx
 	wine util/fxc/fxc.exe /T fx_2_0 $< /Fo $@
 
 crunch:
@@ -64,6 +67,8 @@ setup:
 	make get-libs
 	# for hot reloading
 	sudo sysctl fs.inotify.max_user_instances=1024
+	# build all artifacts once
+	make artifacts
 	####################
 	# SETUP SUCCESSFUL #
 	####################
