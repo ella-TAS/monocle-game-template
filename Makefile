@@ -10,6 +10,9 @@ FXB := $(FX:.fx=.fxb)
 watch: artifacts
 	LD_LIBRARY_PATH="$(PWD)/fnalibs/lib64/" dotnet watch --project Game/Game.csproj
 
+build:
+	dotnet build Game/Game.csproj
+
 publish-linux: prepare-publish
 	rm -rf $(publish_linux)
 	dotnet publish Game/Game.csproj -c Release -r linux-x64 --self-contained true
@@ -21,7 +24,7 @@ publish-win: prepare-publish
 	dotnet publish Game/Game.csproj -c Release -r win-x64 --self-contained true
 	cp fnalibs/x64/* $(publish_win)/
 
-prepare-publish: qa artifacts git-submodule-reset clean
+prepare-publish: qa artifacts git-reset clean
 
 artifacts: $(FXB) crunch
 	# All artifacts up-to-date
@@ -58,7 +61,7 @@ setup:
 	python3 -V
 	git -v
 	# initialize submodules
-	make git-submodule-reset
+	make git-reset
 	# install required tools
 	sudo apt install -y dotnet-sdk-10.0
 	sudo apt install -y dotnet-runtime-10.0
@@ -73,10 +76,10 @@ setup:
 	# SETUP SUCCESSFUL #
 	####################
 
-git-submodule-reset:
+git-reset:
 	git submodule update --init --recursive
 
-git-submodule-pull: git-submodule-reset
+git-pull: git-reset
 	git submodule update --remote
 
 get-libs:
