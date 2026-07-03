@@ -1,5 +1,6 @@
 fnalibs_source=https://nightly.link/FNA-XNA/fnalibs-dailies/workflows/ci/main
 fnalibs_wasm_source=https://github.com/r58Playz/FNA-WASM-Build/releases/latest/download
+fxc_source=https://tail.snipundercover.ovh/public/fxc-purrtable
 
 publish_linux=Game/bin/Release/net10.0/linux-x64/publish
 publish_win=Game/bin/Release/net10.0/win-x64/publish
@@ -113,3 +114,8 @@ get-libs-wasm:
 	wget $(fnalibs_wasm_source)/FNA3D.a -O fnalibs/wasm/FNA3D.a
 	wget $(fnalibs_wasm_source)/libmojoshader.a -O fnalibs/wasm/libmojoshader.a
 	wget $(fnalibs_wasm_source)/SDL3.a -O fnalibs/wasm/SDL3.a
+
+get-fxc:
+	mkdir -p util/fxc
+	wget $(fxc_source)/D3DCompiler_43.dll -O util/fxc/D3DCompiler_43.dll
+	wget $(fxc_source)/fxc.exe -O util/fxc/fxc.exe

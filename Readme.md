@@ -38,6 +38,8 @@ Other: SDL_GameController devices fully supported
 ## License
 Like [Monocle](https://github.com/ella-TAS/monocle-continued/blob/master/License.txt), this project is licensed under the terms of the MIT license. In addition, I'd be happy to be credited for the template if you use it.
 
+A collection of all included licenses can be found in the licenses folder.
+
 ## Credits
 
 ### Development
