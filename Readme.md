@@ -2,10 +2,10 @@
 
 ## Platforms
 - Linux
-- Browser (WebAssembly)
 - Windows
+- Browser (WebAssembly)
 
-not tested but should work:
+not tested, but should work:
 - MacOS
 - Switch
 - PlayStation 4
