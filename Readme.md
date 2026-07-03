@@ -58,8 +58,6 @@ FNA Web template: https://github.com/r58Playz/fna-wasm-threads
 
 Nez effects: https://github.com/prime31/Nez/tree/master/DefaultContentSource/effects
 
-Shader compiler: https://tail.snipundercover.ovh/public/fxc-purrtable/
-
 Atlas cruncher: https://github.com/ChevyRay/crunch
 
 Font converter: https://angelcode.com/products/bmfont
