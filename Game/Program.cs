@@ -7,7 +7,9 @@ using System.Runtime.InteropServices.JavaScript;
 using System.Threading.Tasks;
 #pragma warning restore
 
+#if BROWSER
 [assembly: System.Runtime.Versioning.SupportedOSPlatform("browser")]
+#else
 
 namespace Gamespace;
 

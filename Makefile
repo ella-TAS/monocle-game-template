@@ -22,11 +22,9 @@ wasm: artifacts wasm-build serve
 
 wasm-build:
 	rm -rf $(release_wasm)
-	git apply --directory=FNA util/wasm/FNA.patch
-	# FNA Patch applied
+	make patch
 	dotnet publish Game/Game.Wasm.csproj -c Release
-	git apply --directory=FNA --reverse util/wasm/FNA.patch
-	# FNA Patch reverted
+	make unpatch
 
 	# fix mono init with -sWASMFS enabled
 	sed -i 's/FS_createPath("\/","usr\/share",!0,!0)/FS_createPath("\/usr","share",!0,!0)/' $(release_wasm)/wwwroot/_framework/dotnet.runtime.*.js
@@ -77,6 +75,16 @@ crunch:
 clean:
 	find . -name "obj" -type d -exec rm -rf {} +
 	find . -name "bin" -type d -exec rm -rf {} +
+
+patch:
+	git apply --directory=FNA util/wasm/FNA.patch
+	git apply --directory=monocle-engine util/wasm/Monocle.patch
+	# Patches applied
+
+unpatch:
+	git apply --directory=FNA --reverse util/wasm/FNA.patch
+	git apply --directory=monocle-engine --reverse util/wasm/Monocle.patch
+	# Patches reverted
 
 serve:
 	python3 util/wasm/serve.py $(release_wasm)/wwwroot

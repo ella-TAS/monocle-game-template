@@ -1,0 +1,12 @@
+diff --git a/Engine.cs b/Engine.cs
+index 0d84eb3..a63b8e9 100644
+--- a/Engine.cs
++++ b/Engine.cs
+@@ -220,7 +220,6 @@ namespace Monocle {
+             IsFixedTimeStep = false;
+             ExitOnEscapeKeypress = true;
+ 
+-            GCSettings.LatencyMode = GCLatencyMode.SustainedLowLatency;
+ 
+             Graphics.ApplyChanges();
+         }
