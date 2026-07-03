@@ -18,7 +18,7 @@
     </ItemGroup>
 
     <ItemGroup>
-        <Content Include="Content/**/*" Exclude="**/*.fx;Content/Graphics/**/*">
+        <Content Include="Content/**/*" Exclude="**/*.fx;**/.git*;Content/Graphics/**/*">
             <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
         </Content>
     </ItemGroup>

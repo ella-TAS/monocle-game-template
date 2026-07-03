@@ -1,0 +1,48 @@
+<Project Sdk="Microsoft.NET.Sdk.WebAssembly">
+	<PropertyGroup>
+		<TargetFramework>net10.0</TargetFramework>
+		<RootNamespace>Gamespace</RootNamespace>
+		<AssemblyName>Gamespace</AssemblyName>
+		<AllowUnsafeBlocks>true</AllowUnsafeBlocks>
+		<ImplicitUsings>enable</ImplicitUsings>
+		<EnableUnsafeBinaryFormatterSerialization>true</EnableUnsafeBinaryFormatterSerialization>
+		<Nullable>disable</Nullable>
+
+		<!--<RunAOTCompilation>true</RunAOTCompilation>-->
+		<CompressionEnabled>false</CompressionEnabled>
+		<TrimMode>partial</TrimMode>
+		<PublishTrimmed>false</PublishTrimmed>
+
+		<NoWarn>IL2026,IL2046,IL2057,IL2062,IL2065,IL2067,IL2070,IL2072,IL2075,IL2087,IL2090</NoWarn>
+		<NoWarn>$(NoWarn),CS0169,CS0219,CS0649,CS8981,CA2022</NoWarn>
+
+		<WasmBuildNative>true</WasmBuildNative>
+		<WasmEnableThreads>true</WasmEnableThreads>
+		<WasmEnableSIMD>true</WasmEnableSIMD>
+		<WasmEnableExceptionHandling>true</WasmEnableExceptionHandling>
+
+		<WasmAllowUndefinedSymbols>true</WasmAllowUndefinedSymbols>
+		<WasmBitcodeCompileOptimizationFlag>-O3</WasmBitcodeCompileOptimizationFlag>
+		<WasmNativeStrip>true</WasmNativeStrip>
+		<WasmStripILAfterAOT>true</WasmStripILAfterAOT>
+		<WasmNativeDebugSymbols>false</WasmNativeDebugSymbols>
+
+		<EmccExtraLDFlags>-sMIN_WEBGL_VERSION=2 -sMAX_WEBGL_VERSION=2 -sFULL_ES2 -sFULL_ES3 -sWASMFS -sOFFSCREENCANVAS_SUPPORT</EmccExtraLDFlags>
+		<EmccLinkOptimizationFlag>-O3</EmccLinkOptimizationFlag>
+		<EmccCompileOptimizationFlag>-O3</EmccCompileOptimizationFlag>
+		<EmccEnvironment>web,worker</EmccEnvironment>
+	</PropertyGroup>
+
+	<ItemGroup>
+		<!-- FNA -->
+		<NativeFileReference Include="../fnalibs/wasm/**" />
+
+		<!-- WASMFS -->
+		<NativeFileReference Include="../util/wasm/Emscripten.c" />
+	</ItemGroup>
+
+	<ItemGroup>
+		<ProjectReference Include="../monocle-engine/Monocle.csproj" />
+		<ProjectReference Include="../FNA/FNA.Core.csproj" />
+	</ItemGroup>
+</Project>

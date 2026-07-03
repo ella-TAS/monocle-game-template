@@ -2,8 +2,9 @@ fnalibs_source=https://nightly.link/FNA-XNA/fnalibs-dailies/workflows/ci/main
 fnalibs_wasm_source=https://github.com/r58Playz/FNA-WASM-Build/releases/latest/download
 fxc_source=https://tail.snipundercover.ovh/public/fxc-purrtable
 
-publish_linux=Game/bin/Release/net10.0/linux-x64/publish
-publish_win=Game/bin/Release/net10.0/win-x64/publish
+release_linux=Game/bin/Release/net10.0/linux-x64/publish
+release_win=Game/bin/Release/net10.0/win-x64/publish
+release_wasm=Game/bin/Release/net10.0/publish
 
 FX := $(wildcard Game/Content/Effects/*.fx) $(wildcard Game/Content/Effects/Nez/*.fx)
 FXB := $(FX:.fx=.fxb)
@@ -14,21 +15,52 @@ watch: artifacts
 run: artifacts
 	LD_LIBRARY_PATH="$(PWD)/fnalibs/lib64/" dotnet run --project Game/Game.csproj
 
-build:
+build: artifacts
 	dotnet build Game/Game.csproj
 
+wasm: artifacts wasm-build serve
+
+wasm-build:
+	rm -rf $(release_wasm)
+	git apply --directory=FNA util/wasm/FNA.patch
+	# FNA Patch applied
+	dotnet publish Game/Game.Wasm.csproj -c Release
+	git apply --directory=FNA --reverse util/wasm/FNA.patch
+	# FNA Patch reverted
+
+	# fix mono init with -sWASMFS enabled
+	sed -i 's/FS_createPath("\/","usr\/share",!0,!0)/FS_createPath("\/usr","share",!0,!0)/' $(release_wasm)/wwwroot/_framework/dotnet.runtime.*.js
+	# automatically force transfer of canvas matching selector `.canvas` (class canvas) to deputy thread (c# managed main thread)
+	sed -i 's/var offscreenCanvases={};/var offscreenCanvases={};if(globalThis.window\&\&!window.TRANSFERRED_CANVAS){transferredCanvasNames=[".canvas"];window.TRANSFERRED_CANVAS=true;}/' $(release_wasm)/wwwroot/_framework/dotnet.native.*.js
+
+	# copy Content manually because the build process removes XMLs
+	mv $(release_wasm)/Content $(release_wasm)/wwwroot/
+	cp -r Game/Content/* $(release_wasm)/wwwroot/Content/
+	rm -r $(release_wasm)/wwwroot/Content/Graphics
+	find $(release_wasm)/wwwroot/Content/ -name "*.fx" -exec rm {} +
+	find $(release_wasm)/wwwroot/Content/ -name ".git*" -exec rm {} +
+
+publish-wasm: prepare-publish wasm-build
+	#do zipping
+
 publish-linux: prepare-publish
-	rm -rf $(publish_linux)
+	rm -rf $(release_linux)
 	dotnet publish Game/Game.csproj -c Release -r linux-x64 --self-contained true
-	cp fnalibs/lib64/* $(publish_linux)/
-	chmod +x $(publish_linux)/Gamespace
+	cp fnalibs/lib64/* $(release_linux)/
+	chmod +x $(release_linux)/Gamespace
+	#do zipping here
 
 publish-win: prepare-publish
-	rm -rf $(publish_win)
+	rm -rf $(release_win)
 	dotnet publish Game/Game.csproj -c Release -r win-x64 --self-contained true
-	cp fnalibs/x64/* $(publish_win)/
+	cp fnalibs/x64/* $(release_win)/
+	#do zipping here
 
-prepare-publish: qa artifacts git-reset clean
+publish-all: clean publish-linux publish-win publish-wasm
+	# move release zips
+
+prepare-publish: qa artifacts git-reset
+	rm -f Game/Content/Atlases/.hash
 
 artifacts: $(FXB) crunch
 	# All artifacts up-to-date
@@ -43,9 +75,11 @@ crunch:
 	util/crunch Game/Content/Atlases/ Game/Content/Graphics/ -d
 
 clean:
-	rm -f Game/Content/Atlases/.hash
 	find . -name "obj" -type d -exec rm -rf {} +
 	find . -name "bin" -type d -exec rm -rf {} +
+
+serve:
+	python3 util/wasm/serve.py $(release_wasm)/wwwroot
 
 qa:
 	@failed=0; \
@@ -64,21 +98,28 @@ setup:
 	unzip -v
 	python3 -V
 	git -v
+
 	# initialize submodules
 	make git-reset
+
 	# install required tools
 	sudo apt install -y dotnet-sdk-10.0
 	sudo apt install -y dotnet-runtime-10.0
 	sudo apt install -y wine
 	dotnet workload install wasm-tools
-	dotnet workload restore
+	dotnet workload restore --project Game/Game.csproj
 	# dotnet tool install -g dotnet-mgcb
+
 	# download required files
 	make get-libs
+	make get-fxc
+
 	# for hot reloading
 	sudo sysctl fs.inotify.max_user_instances=1024
+
 	# build all artifacts once
 	make artifacts
+
 	####################
 	# SETUP SUCCESSFUL #
 	####################
@@ -119,3 +160,15 @@ get-fxc:
 	mkdir -p util/fxc
 	wget $(fxc_source)/D3DCompiler_43.dll -O util/fxc/D3DCompiler_43.dll
 	wget $(fxc_source)/fxc.exe -O util/fxc/fxc.exe
+
+remove-wasm:
+	rm -f license/FNA-web-template.txt
+	rm -f Game/Game.Wasm.csproj
+	rm -rf fnalibs/wasm
+	rm -rf util/wasm
+	rm -rf Game/wwwroot
+	echo "namespace Gamespace;\n\npublic static class Program {\n    public static void Main() {\n        using var game = new Game();\n        game.Run();\n    }\n}" > Game/Program.cs
+	#
+	# The following sections of the Makefile can be removed
+	#
+	grep "wasm" Makefile

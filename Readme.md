@@ -1,4 +1,5 @@
 # Monocle Game Template
+This template is made for use on Linux.
 
 ## Platforms
 main supported platforms:
@@ -35,6 +36,9 @@ Graphics (Recommended): Vulkan support
 
 Other: SDL_GameController devices fully supported
 
+## Removing WASM Extras
+If you don't need the WebAssembly build, you can run `make remove-wasm` once and then remove the wasm-related targets from the Makefile.
+
 ## License
 Like [Monocle](https://github.com/ella-TAS/monocle-continued/blob/master/License.txt), this project is licensed under the terms of the MIT license. In addition, I'd be happy to be credited for the template if you use it.
 
@@ -50,10 +54,12 @@ Monocle: https://github.com/ella-TAS/monocle-engine, derived from https://github
 
 FNA: https://github.com/FNA-XNA/FNA
 
-Nez Effects: https://github.com/prime31/Nez/tree/master/DefaultContentSource/effects
+FNA Web template: https://github.com/r58Playz/fna-wasm-threads
+
+Nez effects: https://github.com/prime31/Nez/tree/master/DefaultContentSource/effects
 
 Shader compiler: https://tail.snipundercover.ovh/public/fxc-purrtable/
 
 Atlas cruncher: https://github.com/ChevyRay/crunch
 
-Font Converter: https://angelcode.com/products/bmfont
+Font converter: https://angelcode.com/products/bmfont

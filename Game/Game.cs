@@ -18,7 +18,7 @@ class Game : Engine {
 
 #if DEBUG
         Trace.Listeners.Add(new TextWriterTraceListener(Console.Out));
-#else
+#elif !BROWSER
         SetFullscreen();
 #endif
     }
@@ -61,5 +61,18 @@ class Game : Engine {
         } else {
             SetFullscreen();
         }
+    }
+
+    public static (int Width, int Height) GetMax169Size(int maxWidth, int maxHeight) {
+        float ratio = 16f / 9f;
+        if (maxWidth * 9 < maxHeight * 16) {
+            return (maxWidth, (int) (maxWidth / ratio));
+        }
+        return ((int) (maxHeight * ratio), maxHeight);
+    }
+
+    public static void Resize(int width, int height) {
+        (int w, int h) = GetMax169Size(width, height);
+        SetWindowed(w, h);
     }
 }

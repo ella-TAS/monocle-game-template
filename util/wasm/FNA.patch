@@ -1,0 +1,23 @@
+Submodule lib/SDL3-CS contains modified content
+diff --git a/lib/SDL3-CS/SDL3/SDL3.Legacy.cs b/lib/SDL3-CS/SDL3/SDL3.Legacy.cs
+index 338963f..c513257 100644
+--- a/lib/SDL3-CS/SDL3/SDL3.Legacy.cs
++++ b/lib/SDL3-CS/SDL3/SDL3.Legacy.cs
+@@ -2282,7 +2282,7 @@ namespace SDL3
+ 		[DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl)]
+ 		public static extern IntPtr SDL_GetWindows(out int count);
+ 
+-		[DllImport(nativeLibName, EntryPoint = "SDL_CreateWindow", CallingConvention = CallingConvention.Cdecl)]
++		[DllImport(nativeLibName, EntryPoint = "SDL__CreateWindow", CallingConvention = CallingConvention.Cdecl)]
+ 		private static extern IntPtr INTERNAL_SDL_CreateWindow(byte* title, int w, int h, SDL_WindowFlags flags);
+ 		public static IntPtr SDL_CreateWindow(string title, int w, int h, SDL_WindowFlags flags)
+ 		{
+@@ -2311,7 +2311,7 @@ namespace SDL3
+ 		[DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl)]
+ 		public static extern uint SDL_GetWindowProperties(IntPtr window);
+ 
+-		[DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl)]
++		[DllImport(nativeLibName, EntryPoint = "SDL__GetWindowFlags", CallingConvention = CallingConvention.Cdecl)]
+ 		public static extern SDL_WindowFlags SDL_GetWindowFlags(IntPtr window);
+ 
+ 		[DllImport(nativeLibName, EntryPoint = "SDL_SetWindowTitle", CallingConvention = CallingConvention.Cdecl)]
