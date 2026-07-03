@@ -10,6 +10,9 @@ FXB := $(FX:.fx=.fxb)
 watch: artifacts
 	LD_LIBRARY_PATH="$(PWD)/fnalibs/lib64/" dotnet watch --project Game/Game.csproj
 
+run: artifacts
+	LD_LIBRARY_PATH="$(PWD)/fnalibs/lib64/" dotnet run --project Game/Game.csproj
+
 build:
 	dotnet build Game/Game.csproj
 
@@ -66,6 +69,9 @@ setup:
 	sudo apt install -y dotnet-sdk-10.0
 	sudo apt install -y dotnet-runtime-10.0
 	sudo apt install -y wine
+	dotnet workload install wasm-tools
+	dotnet workload restore
+	# dotnet tool install -g dotnet-mgcb
 	# download required files
 	make get-libs
 	# for hot reloading

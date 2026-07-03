@@ -1,0 +1,5 @@
+<Sprites>
+    <player path="" start="idle">
+        <Loop id="idle" path="heart" />
+    </player>
+</Sprites>

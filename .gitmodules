@@ -1,6 +1,6 @@
 [submodule "monocle-engine"]
 	path = monocle-engine
-	url = https://github.com/ella-TAS/monocle-engine
+	url = https://github.com/ella-TAS/monocle-continued
 [submodule "FNA"]
 	path = FNA
 	url = https://github.com/FNA-XNA/FNA

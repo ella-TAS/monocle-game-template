@@ -2,7 +2,13 @@
     "Log": {
         "scope": "csharp",
         "prefix": "log",
-        "body": "Console.WriteLine($\"{$0}\");",
+        "body": "Calc.Log($0);",
         "description": "Log output to console"
+    },
+    "Dissect": {
+        "scope": "csharp",
+        "prefix": "dissect",
+        "body": "Calc.Dissect($0);",
+        "description": "Dissect object to console"
     }
 }

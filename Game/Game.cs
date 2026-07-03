@@ -1,7 +1,10 @@
-﻿using Gamespace.Scenes;
+﻿using Gamespace.Data;
+using Gamespace.Save;
+using Gamespace.Scenes;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Input;
 using Monocle;
+using System.Diagnostics;
 
 namespace Gamespace;
 
@@ -9,14 +12,13 @@ class Game : Engine {
     public Game() : base(320, 180, 1280, 720, "Gamespace", false) {
         Window.AllowUserResizing = false;
         IsMouseVisible = true;
-        ExitOnEscapeKeypress = false;
+        ExitOnEscapeKeypress = true;
         IsFixedTimeStep = true;
         TargetElapsedTime = TimeSpan.FromSeconds(1.0 / 60.0);
 
-        // pixel art upscaling
-        Environment.SetEnvironmentVariable("FNA_OPENGL_BACKBUFFER_SCALE_NEAREST", "1");
-
-#if !DEBUG
+#if DEBUG
+        Trace.Listeners.Add(new TextWriterTraceListener(Console.Out));
+#else
         SetFullscreen();
 #endif
     }
@@ -24,6 +26,7 @@ class Game : Engine {
     protected override void Initialize() {
         base.Initialize();
 
+        SaveData.Load();
         Scene = new GameScene();
 
 #if !DEBUG
@@ -34,7 +37,7 @@ class Game : Engine {
     protected override void LoadContent() {
         base.LoadContent();
 
-
+        GFX.Load();
     }
 
     protected override void Update(GameTime gameTime) {
@@ -49,7 +52,7 @@ class Game : Engine {
     protected override void OnExiting(object sender, EventArgs args) {
         base.OnExiting(sender, args);
 
-        // UserIO.Save(SaveData.Instance);
+        SaveData.Save();
     }
 
     public static void ToggleFullscreen() {
