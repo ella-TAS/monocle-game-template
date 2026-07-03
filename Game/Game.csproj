@@ -12,6 +12,9 @@
 
     <ItemGroup>
         <ProjectReference Include="../monocle-engine/Monocle.csproj" />
+        <ProjectReference Include="../FNA/FNA.Core.csproj">
+            <ExcludeFromSingleFile>true</ExcludeFromSingleFile>
+        </ProjectReference>
     </ItemGroup>
 
     <ItemGroup>
