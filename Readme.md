@@ -52,8 +52,6 @@ FNA: https://github.com/FNA-XNA/FNA
 
 Nez Effects: https://github.com/prime31/Nez/tree/master/DefaultContentSource/effects
 
-Shader compiler: https://tail.snipundercover.ovh/public/fxc-purrtable/
-
 Atlas cruncher: https://github.com/ChevyRay/crunch
 
 Font Converter: https://angelcode.com/products/bmfont
