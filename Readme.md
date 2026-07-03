@@ -1,6 +1,7 @@
 # Monocle Game Template
 
 ## Platforms
+main supported platforms:
 - Linux
 - Windows
 - Browser (WebAssembly)
