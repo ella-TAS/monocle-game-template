@@ -1,4 +1,5 @@
 using Gamespace.Data;
+using Gamespace.Scenes;
 using Monocle;
 
 namespace Gamespace.Entities;
@@ -15,6 +16,6 @@ public class Player : Entity {
     public override void Update() {
         base.Update();
 
-        Position = Position.Approach(MInput.Mouse.Position, 1f);
+        Position = Position.Approach(SceneAs<GameScene>().MousePosition, 1f);
     }
 }

@@ -9,6 +9,8 @@ public class GameScene : Scene {
     public Camera Camera => Renderer.Camera;
     private EverythingRenderer Renderer;
 
+    public Vector2 MousePosition => Camera.ScreenToCamera(MInput.Mouse.Position);
+
     public override void Begin() {
         Renderer = new EverythingRenderer() {
             SamplerState = SamplerState.PointClamp,
