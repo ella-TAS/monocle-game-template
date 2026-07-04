@@ -2,13 +2,19 @@
     "Log": {
         "scope": "csharp",
         "prefix": "log",
-        "body": "Calc.Log($0);",
+        "body": "Logger.Log($0);",
         "description": "Log output to console"
+    },
+    "Release Log": {
+        "scope": "csharp",
+        "prefix": "releaseLog",
+        "body": "Logger.Release(\"Gamespace\", $0);",
+        "description": "Log output to console in Release mode"
     },
     "Dissect": {
         "scope": "csharp",
         "prefix": "dissect",
-        "body": "Calc.Dissect($0);",
+        "body": "Logger.Dissect($0);",
         "description": "Dissect object to console"
     }
 }

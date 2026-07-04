@@ -13,7 +13,7 @@ from pathlib import Path
 SUCCESS = 0
 FAIL = 1
 
-def error(msg, doExit = True):
+def error(msg, doExit=True):
     print(f"\nError in file {argv[1]}")
     print(msg)
     if doExit: exit(FAIL)
@@ -25,7 +25,7 @@ if len(argv) != 2:
 try:
     with open(argv[1], "r", encoding="utf-8-sig") as file:
         content = file.read().splitlines()
-except:
+except Exception:
     print(f"File {argv[1]} not found")
     exit(FAIL)
 
@@ -47,6 +47,10 @@ if not classname:
     error("No class/enum/interface definition found")
 if classname != filename:
     error(f"First class name {classname} and file name {filename} don't match")
+
+if classname == "Program":
+    # Program file may be in no namespace
+    exit(SUCCESS)
 
 if len(namespaces) == 0:
     error("No namespace definition found")

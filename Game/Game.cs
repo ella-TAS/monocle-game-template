@@ -18,16 +18,12 @@ class Game : Engine {
         IsFixedTimeStep = true;
         TargetElapsedTime = TimeSpan.FromSeconds(1.0 / 60.0);
 
-#if DEBUG
-        Trace.Listeners.Add(new TextWriterTraceListener(Console.Out));
-#elif !WASM
+#if !DEBUG && !WASM
         SetFullscreen();
 #endif
     }
 
     protected override void Initialize() {
-        Calc.ReleaseLog("Gamespace", "Starting Monocle Game Engine");
-
         base.Initialize();
 
         SaveData.Load();
@@ -45,7 +41,7 @@ class Game : Engine {
         GFX.Load();
 
         contentLoad.Stop();
-        Calc.ReleaseLog("Gamespace", $"Content loaded in {contentLoad.ElapsedMilliseconds} ms");
+        Logger.Release("Monocle", $"Content loaded in {contentLoad.ElapsedMilliseconds} ms");
     }
 
     protected override void Update(GameTime gameTime) {
@@ -60,6 +56,7 @@ class Game : Engine {
     protected override void OnExiting(object sender, EventArgs args) {
         base.OnExiting(sender, args);
 
+        // in order to save on crash, pass callExitOnCrash: true in Program.cs
         SaveData.Save();
     }
 
@@ -71,6 +68,7 @@ class Game : Engine {
         }
     }
 
+    // resizing the game in the browser window
     public static (int Width, int Height) GetMax169Size(int maxWidth, int maxHeight) {
         float ratio = 16f / 9f;
         if (maxWidth * 9 < maxHeight * 16) {

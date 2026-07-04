@@ -178,7 +178,7 @@ remove-wasm:
 	rm -rf fnalibs/wasm
 	rm -rf util/wasm
 	rm -rf Game/wwwroot
-	echo "namespace Gamespace;\n\npublic static class Program {\n    public static void Main() {\n        using var game = new Game();\n        game.Run();\n    }\n}" > Game/Program.cs
+	echo "namespace Gamespace;\n\npublic static class Program {\n    public static void Main() {\n        using var game = new Game();\n        game.RunWithLogging(callExitOnCrash: false);\n    }\n}" > Game/Program.cs
 	#
 	# The following sections of the Makefile can be removed
 	#
