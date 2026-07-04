@@ -13,8 +13,7 @@
 		<TrimMode>partial</TrimMode>
 		<PublishTrimmed>false</PublishTrimmed>
 
-		<NoWarn>IL2026,IL2046,IL2057,IL2062,IL2065,IL2067,IL2070,IL2072,IL2075,IL2087,IL2090</NoWarn>
-		<NoWarn>$(NoWarn),CS0169,CS0219,CS0649,CS8981,CA2022</NoWarn>
+		<NoWarn>IDE0017;IDE0028;IDE0090;IDE0220;IDE0290;IDE1006;CA2211</NoWarn>
 
 		<WasmBuildNative>true</WasmBuildNative>
 		<WasmEnableThreads>true</WasmEnableThreads>
@@ -31,6 +30,8 @@
 		<EmccLinkOptimizationFlag>-O3</EmccLinkOptimizationFlag>
 		<EmccCompileOptimizationFlag>-O3</EmccCompileOptimizationFlag>
 		<EmccEnvironment>web,worker</EmccEnvironment>
+
+		<DefineConstants>$(DefineConstants);WASM</DefineConstants>
 	</PropertyGroup>
 
 	<ItemGroup>

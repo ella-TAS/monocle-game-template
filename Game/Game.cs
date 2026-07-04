@@ -13,17 +13,21 @@ class Game : Engine {
         Window.AllowUserResizing = false;
         IsMouseVisible = true;
         ExitOnEscapeKeypress = true;
+
+        // fixed framerate at 60 fps
         IsFixedTimeStep = true;
         TargetElapsedTime = TimeSpan.FromSeconds(1.0 / 60.0);
 
 #if DEBUG
         Trace.Listeners.Add(new TextWriterTraceListener(Console.Out));
-#elif !BROWSER
+#elif !WASM
         SetFullscreen();
 #endif
     }
 
     protected override void Initialize() {
+        Calc.ReleaseLog("Gamespace", "Starting Monocle Game Engine");
+
         base.Initialize();
 
         SaveData.Load();
@@ -35,9 +39,13 @@ class Game : Engine {
     }
 
     protected override void LoadContent() {
-        base.LoadContent();
+        Stopwatch contentLoad = Stopwatch.StartNew();
 
+        base.LoadContent();
         GFX.Load();
+
+        contentLoad.Stop();
+        Calc.ReleaseLog("Gamespace", $"Content loaded in {contentLoad.ElapsedMilliseconds} ms");
     }
 
     protected override void Update(GameTime gameTime) {

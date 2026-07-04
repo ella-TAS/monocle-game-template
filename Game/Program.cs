@@ -1,21 +1,16 @@
-#pragma warning disable IDE0005
-using System;
-using System.IO;
+using Gamespace;
+
+#if WASM
 using System.Reflection;
 using System.Runtime.InteropServices;
 using System.Runtime.InteropServices.JavaScript;
-using System.Threading.Tasks;
-#pragma warning restore
 
-#if BROWSER
 [assembly: System.Runtime.Versioning.SupportedOSPlatform("browser")]
-#else
+#endif
 
-namespace Gamespace;
+#if !WASM
 
-#if !BROWSER
-
-public static partial class Program {
+public static class Program {
     public static void Main() {
         using var game = new Game();
         game.Run();
@@ -24,7 +19,7 @@ public static partial class Program {
 
 #else
 
-public static partial class Program {
+partial class Program {
     private static void Main() {
         Console.WriteLine("Hi!");
     }
@@ -48,7 +43,7 @@ public static partial class Program {
             // fetch all content
 
             string monocle = "./Content/Monocle";
-            string atlas = "./Content/Atlas";
+            string atlas = "./Content/Atlases";
             // string effects = "./Content/Effects";
             // string audio = "./Content/Audio";
 
@@ -63,13 +58,15 @@ public static partial class Program {
 
             Emscripten.MountFetchDir(0, atlas);
             Emscripten.MountFetchFile(0, atlas + "/0.png");
-            Emscripten.MountFetchFile(0, atlas + "/.xmlx");
+            Emscripten.MountFetchFile(0, atlas + "/.xml");
 
             // Emscripten.MountFetchDir(0, effects);
             // Emscripten.MountFetchFile(0, effects + "/menuBg.fxb");
 
             // Emscripten.MountFetchDir(0, audio);
             // Emscripten.MountFetchFile(0, audio + "/sound.wav");
+
+            Console.WriteLine("Content copied to memory");
         });
     }
 
@@ -96,6 +93,7 @@ public static partial class Program {
     [JSExport]
     internal static Task<bool> MainLoop(int width, int height) {
         try {
+            // resize game if canvas size was changed
             if (width != lastWidth || height != lastHeight) {
                 Game.Resize(width, height);
             }
@@ -113,7 +111,7 @@ public static partial class Program {
 
 public static class Emscripten {
     [DllImport("Emscripten")]
-    public extern static int mount_opfs();
+    internal extern static int mount_opfs();
     [DllImport("Emscripten")]
     private extern static int mount_fetch(int id, string srcdir, string dstdir);
     [DllImport("Emscripten")]

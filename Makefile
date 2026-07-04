@@ -22,6 +22,9 @@ wasm: artifacts wasm-build serve
 
 wasm-build:
 	rm -rf $(release_wasm)
+
+	# try to revert patch in case the build was cancelled
+	make -i unpatch
 	make patch
 	dotnet publish Game/Game.Wasm.csproj -c Release
 	make unpatch
