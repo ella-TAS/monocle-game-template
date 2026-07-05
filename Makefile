@@ -21,8 +21,6 @@ build: artifacts
 wasm: artifacts wasm-build serve
 
 wasm-build:
-	rm -rf $(release_wasm)
-
 	# try to revert patch in case the build was cancelled
 	make -i unpatch
 	make patch
@@ -42,26 +40,30 @@ wasm-build:
 	find $(release_wasm)/wwwroot/Content/ -name ".git*" -exec rm {} +
 
 publish-wasm: prepare-publish wasm-build
-	#do zipping
+	cp -r licenses $(release_wasm)/wwwroot/
+	cd $(release_wasm)/wwwroot; zip -r -9 Gamespace_web.zip *
+	mv $(release_wasm)/wwwroot/*.zip ./
 
 publish-linux: prepare-publish
-	rm -rf $(release_linux)
 	dotnet publish Game/Game.csproj -c Release -r linux-x64 --self-contained true
-	cp fnalibs/lib64/* $(release_linux)/
 	chmod +x $(release_linux)/Gamespace
-	#do zipping here
+
+	cp fnalibs/lib64/* $(release_linux)/
+	cp -r licenses $(release_linux)/
+	cd $(release_linux); zip -r -9 Gamespace_linux.zip *
+	mv $(release_linux)/*.zip ./
 
 publish-win: prepare-publish
-	rm -rf $(release_win)
 	dotnet publish Game/Game.csproj -c Release -r win-x64 --self-contained true
+
 	cp fnalibs/x64/* $(release_win)/
-	#do zipping here
+	cp -r licenses $(release_win)/
+	cd $(release_win); zip -r -9 Gamespace_windows.zip *
+	mv $(release_win)/*.zip ./
 
-publish-all: clean publish-linux publish-win publish-wasm
-	# move release zips
+publish-all: publish-linux publish-win publish-wasm
 
-prepare-publish: qa artifacts git-reset
-	rm -f Game/Content/Atlases/.hash
+prepare-publish: qa artifacts git-reset clean
 
 artifacts: $(FXB) crunch
 	# All artifacts up-to-date
@@ -76,8 +78,15 @@ crunch:
 	util/crunch Game/Content/Atlases/ Game/Content/Graphics/ -d
 
 clean:
+	rm -f *.zip
+	rm -f Game/Content/Atlases/.hash
+	rm -rf $(release_linux)
+	rm -rf $(release_win)
+	rm -rf $(release_wasm)
 	find . -name "obj" -type d -exec rm -rf {} +
 	find . -name "bin" -type d -exec rm -rf {} +
+	# make sure Wasm patches are not applied
+	make -i unpatch
 
 patch:
 	git apply --directory=FNA util/wasm/FNA.patch
