@@ -27,7 +27,7 @@ class Game : Engine {
         base.Initialize();
 
         SaveData.Load();
-        Scene = new GameScene();
+        Scene = new MenuScene();
 
 #if !DEBUG
         Commands.Enabled = false;
