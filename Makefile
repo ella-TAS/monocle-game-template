@@ -18,11 +18,13 @@ run: artifacts
 build: artifacts
 	dotnet build Game/Game.csproj
 
-wasm: artifacts wasm-build serve
-
-wasm-build:
+wasm: artifacts
 	# try to revert patch in case the build was cancelled
 	make -i unpatch
+	make wasm-build
+	make serve
+
+wasm-build:
 	make patch
 	dotnet publish Game/Game.Wasm.csproj -c Release
 	make unpatch
