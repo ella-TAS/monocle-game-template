@@ -21,7 +21,7 @@ public class GameScene : Scene {
     }
 
     public override void Render() {
-        Engine.Instance.GraphicsDevice.Clear(Color.CornflowerBlue);
+        Engine.Instance.GraphicsDevice.Clear(Color.Transparent);
 
         base.Render();
     }
