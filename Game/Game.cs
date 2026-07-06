@@ -12,7 +12,7 @@ class Game : Engine {
     public Game() : base(320, 180, 1280, 720, "Gamespace", false) {
         Window.AllowUserResizing = false;
         IsMouseVisible = true;
-        ExitOnEscapeKeypress = true;
+        ExitOnEscapeKeypress = false;
 
         // fixed framerate at 60 fps
         IsFixedTimeStep = true;
@@ -39,6 +39,7 @@ class Game : Engine {
 
         base.LoadContent();
         GFX.Load();
+        Fonts.Load();
 
         contentLoad.Stop();
         Logger.Release("Monocle", $"Content loaded in {contentLoad.ElapsedMilliseconds} ms");
@@ -47,10 +48,22 @@ class Game : Engine {
     protected override void Update(GameTime gameTime) {
         base.Update(gameTime);
 
+#if DEBUG
         // fullscreen toggle
         if (MInput.Keyboard.Pressed(Keys.F4)) {
             ToggleFullscreen();
         }
+
+        // debug reset
+        if (MInput.Keyboard.Pressed(Keys.R)) {
+            Scene = new MenuScene();
+        }
+
+        // debug save data reset
+        if (MInput.Keyboard.Pressed(Keys.S)) {
+            SaveData.Instance = new SaveData();
+        }
+#endif
     }
 
     protected override void OnExiting(object sender, EventArgs args) {

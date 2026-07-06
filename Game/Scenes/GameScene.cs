@@ -1,6 +1,7 @@
 using Gamespace.Entities;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
+using Microsoft.Xna.Framework.Input;
 using Monocle;
 
 namespace Gamespace.Scenes;
@@ -18,6 +19,17 @@ public class GameScene : Scene {
         Add(Renderer);
 
         Add(new Player());
+    }
+
+    public override void Update() {
+        base.Update();
+
+#if DEBUG
+        // return to menu
+        if (MInput.Keyboard.Pressed(Keys.Escape)) {
+            Engine.Scene = new MenuScene();
+        }
+#endif
     }
 
     public override void Render() {

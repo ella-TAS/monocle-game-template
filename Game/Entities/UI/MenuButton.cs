@@ -1,15 +1,18 @@
+using Gamespace.Data;
 using Microsoft.Xna.Framework;
 using Monocle;
 
 namespace Gamespace.Entities.UI;
 
 public class MenuButton : GenericButton {
+    private readonly PixelText textComponent;
+
     private float scaleTarget = 1f;
     private float scale = 1f;
 
-    public MenuButton(Vector2 center, string text, Action ReleaseAction)
-        : base(center, 32, 16, ReleaseAction) {
-        Add(new Text(Draw.DefaultFont, text, center, Color.Green));
+    public MenuButton(Vector2 center, string text, Action ReleaseAction) : base(center, 32, 16, ReleaseAction) {
+        textComponent = new PixelText(Fonts.NezFont, Position, text, Color.Green);
+        Add(textComponent);
     }
 
     public override void Update() {
@@ -20,7 +23,7 @@ public class MenuButton : GenericButton {
             scale = scaleTarget;
         }
 
-        Get<Text>().Scale = Vector2.One * scale;
+        textComponent.Scale = Vector2.One * scale;
     }
 
     public override void OnHover() {
