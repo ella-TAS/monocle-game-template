@@ -60,4 +60,4 @@ Nez effects: https://github.com/prime31/Nez/tree/master/DefaultContentSource/eff
 
 Atlas cruncher: https://github.com/ChevyRay/crunch
 
-Font converter: https://angelcode.com/products/bmfont
+Font converter: https://github.com/andryblack/fontbuilder
