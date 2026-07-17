@@ -46,7 +46,7 @@ A collection of all included licenses can be found in the licenses folder.
 
 ## Credits
 
-### Development
+### Tools and Libraries
 
 Monocle Game Template: https://github.com/ella-TAS/monocle-game-template
 
@@ -61,3 +61,9 @@ Nez effects: https://github.com/prime31/Nez/tree/master/DefaultContentSource/eff
 Atlas cruncher: https://github.com/ChevyRay/crunch
 
 Font converter: https://github.com/andryblack/fontbuilder
+
+Lönn Level Editor: https://github.com/CelestialCartographers/Loenn
+
+used together with https://github.com/iSkLz/CelesteTools
+
+or Ogmo Level Editor: https://github.com/Ogmo-Editor-3/OgmoEditor3-CE
