@@ -10,7 +10,7 @@ namespace Gamespace;
 
 class Game : Engine {
     public Game() : base(320, 180, 1280, 720, "Gamespace", false) {
-        Window.AllowUserResizing = false;
+        Window.AllowUserResizing = true;
         IsMouseVisible = true;
         ExitOnEscapeKeypress = false;
 
@@ -18,9 +18,7 @@ class Game : Engine {
         IsFixedTimeStep = true;
         TargetElapsedTime = TimeSpan.FromSeconds(1.0 / 60.0);
 
-#if !DEBUG && !WASM
-        SetFullscreen();
-#endif
+        ClearColor = Color.CornflowerBlue;
     }
 
     protected override void Initialize() {
@@ -31,6 +29,9 @@ class Game : Engine {
 
 #if !DEBUG
         Commands.Enabled = false;
+#endif
+#if !DEBUG && !WASM
+        SetFullscreen();
 #endif
     }
 

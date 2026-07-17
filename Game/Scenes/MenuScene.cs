@@ -14,13 +14,10 @@ public class MenuScene : Scene {
         };
         Add(Renderer);
 
-        Add(new MenuButton(new Vector2(50, 50), "Play", () => Engine.Scene = new GameScene()));
+        Add(new MenuButton(new Vector2(50, 50), "Play",
+            () => FadeTransition.Transition(this, new GameScene())
+        ));
         Add(new MenuButton(new Vector2(100, 50), "Exit", Engine.Instance.Exit));
     }
 
-    public override void Render() {
-        Engine.Instance.GraphicsDevice.Clear(Color.Transparent);
-
-        base.Render();
-    }
 }

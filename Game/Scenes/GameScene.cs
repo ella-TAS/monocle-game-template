@@ -27,14 +27,8 @@ public class GameScene : Scene {
 #if DEBUG
         // return to menu
         if (MInput.Keyboard.Pressed(Keys.Escape)) {
-            Engine.Scene = new MenuScene();
+            FadeTransition.Transition(this, new MenuScene());
         }
 #endif
-    }
-
-    public override void Render() {
-        Engine.Instance.GraphicsDevice.Clear(Color.Transparent);
-
-        base.Render();
     }
 }
