@@ -17,15 +17,13 @@ class Game : Engine {
         // fixed framerate at 60 fps
         IsFixedTimeStep = true;
         TargetElapsedTime = TimeSpan.FromSeconds(1.0 / 60.0);
-
-        ClearColor = Color.CornflowerBlue;
     }
 
     protected override void Initialize() {
         base.Initialize();
 
         SaveData.Load();
-        Scene = new MenuScene();
+        Scene = new TitleScene();
 
 #if !DEBUG
         Commands.Enabled = false;

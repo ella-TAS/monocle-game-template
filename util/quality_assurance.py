@@ -1,6 +1,6 @@
 """
-Usage: python3 file.py [FILE]
-Checks the input file argv[1] for the following criteria:
+Usage: python3 file.py FILE
+Checks the input file for the following criteria:
 - There is exactly one namespace definition
 - The namespace matches the folder structure
 - The first class definition matches the file name
@@ -19,7 +19,7 @@ def error(msg, doExit=True):
     if doExit: exit(FAIL)
 
 if len(argv) != 2:
-    print(f"Usage: python3 {argv[0]} [FILE]")
+    print(f"Usage: python3 {argv[0]} FILE")
     exit(FAIL)
 
 try:

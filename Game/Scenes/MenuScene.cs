@@ -19,5 +19,4 @@ public class MenuScene : Scene {
         ));
         Add(new MenuButton(new Vector2(100, 50), "Exit", Engine.Instance.Exit));
     }
-
 }
