@@ -6,7 +6,7 @@ release_linux=Game/bin/Release/net10.0/linux-x64/publish
 release_win=Game/bin/Release/net10.0/win-x64/publish
 release_wasm=Game/bin/Release/net10.0/publish
 
-FX := $(wildcard Game/Content/Effects/*.fx) $(wildcard Game/Content/Effects/Nez/*.fx)
+FX := $(wildcard Game/Content/Effects/*.fx)
 FXB := $(FX:.fx=.fxb)
 
 watch: artifacts
@@ -71,9 +71,6 @@ artifacts: $(FXB) crunch
 	# All artifacts up-to-date
 
 Game/Content/Effects/%.fxb: Game/Content/Effects/%.fx
-	wine util/fxc/fxc.exe /T fx_2_0 $< /Fo $@
-
-Game/Content/Effects/Nez/%.fxb: Game/Content/Effects/Nez/%.fx
 	wine util/fxc/fxc.exe /T fx_2_0 $< /Fo $@
 
 crunch:
