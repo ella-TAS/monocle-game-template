@@ -11,7 +11,7 @@ public class MenuButton : GenericButton {
     private float scale = 1f;
 
     public MenuButton(Vector2 center, string text, Action ReleaseAction) : base(center, 32, 16, ReleaseAction) {
-        textComponent = new PixelText(Fonts.NezFont, Position, text, Color.Green);
+        textComponent = new PixelText(Fonts.Minor, Position, text, Color.Green);
         Add(textComponent);
     }
 

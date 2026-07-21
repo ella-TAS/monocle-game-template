@@ -1,10 +1,10 @@
 <?xml version="1.0"?>
 <!-- The format of this file is documented at https://angelcode.com/products/bmfont/doc/file_format.html -->
 <font>
-    <info face="Minimal" size="10" bold="0" italic="0" charset="" unicode="" stretchH="100" smooth="0" aa="1" padding="2,2,2,2" spacing="0,0" outline="0" />
-    <common lineHeight="10" base="8" scaleW="112" scaleH="60" pages="1" packed="0" />
+    <info face="PxMinor" size="10" bold="0" italic="0" charset="" unicode="" stretchH="100" smooth="0" aa="1" padding="2,2,2,2" spacing="0,0" outline="0" />
+    <common lineHeight="10" base="7" scaleW="112" scaleH="60" pages="1" packed="0" />
     <pages>
-        <page id="0" file="minimal.png" />
+        <page id="0" file="PxMinor.png" />
     </pages>
     <chars count="95">
         <char id="32" x="0" y="0" width="1" height="10" xoffset="0" yoffset="0" xadvance="3" page="0" chnl="15" />

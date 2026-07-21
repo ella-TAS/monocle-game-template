@@ -18,5 +18,7 @@ public class MenuScene : Scene {
             () => FadeTransition.Transition(this, new GameScene())
         ));
         Add(new MenuButton(new Vector2(100, 50), "Exit", Engine.Instance.Exit));
+
+        Add(new InfoBox());
     }
 }
