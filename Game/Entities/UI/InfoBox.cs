@@ -1,5 +1,4 @@
 using Gamespace.Data;
-using Microsoft.Xna.Framework;
 using Monocle;
 
 namespace Gamespace.Entities.UI;
