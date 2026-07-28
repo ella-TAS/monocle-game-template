@@ -4,7 +4,7 @@ using Monocle;
 
 namespace Gamespace.Entities;
 
-public class Player : Entity {
+public class Player : SceneEntity<GameScene> {
     private readonly Sprite sprite;
 
     public Player() {
@@ -16,6 +16,6 @@ public class Player : Entity {
     public override void Update() {
         base.Update();
 
-        Position = Position.Approach(SceneAs<GameScene>().MousePosition, 1f);
+        Position = Position.Approach(Scene.MousePosition, 1f);
     }
 }

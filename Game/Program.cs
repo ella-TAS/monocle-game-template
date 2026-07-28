@@ -29,7 +29,7 @@ partial class Program {
     private static int lastWidth, lastHeight;
 
     [JSExport]
-    internal static Task PreInit(string basePath) {
+    internal static Task PreInit(string basePath, string[] contentPaths) {
         return Task.Run(() => {
             Console.WriteLine("calling mount_opfs");
             int ret = Emscripten.mount_opfs();
@@ -41,30 +41,16 @@ partial class Program {
             Environment.SetEnvironmentVariable("FNA_PLATFORM_BACKEND", "SDL3");
 
             // fetch all content
-
-            string monocle = "./Content/Monocle";
-            string atlas = "./Content/Atlases";
-            // string effects = "./Content/Effects";
-            // string audio = "./Content/Audio";
-
             Console.WriteLine("Content Path: " + basePath + "/Content");
 
             Emscripten.MountFetch(0, basePath + "/Content", "./Content");
-
-            Emscripten.MountFetchFile(0, "./Content/Sprites.xml");
-
-            Emscripten.MountFetchDir(0, monocle);
-            Emscripten.MountFetchFile(0, monocle + "/MonocleDefault.xnb");
-
-            Emscripten.MountFetchDir(0, atlas);
-            Emscripten.MountFetchFile(0, atlas + "/0.png");
-            Emscripten.MountFetchFile(0, atlas + "/.xml");
-
-            // Emscripten.MountFetchDir(0, effects);
-            // Emscripten.MountFetchFile(0, effects + "/menuBg.fxb");
-
-            // Emscripten.MountFetchDir(0, audio);
-            // Emscripten.MountFetchFile(0, audio + "/sound.wav");
+            foreach (string path in contentPaths) {
+                if (path.EndsWith('/')) {
+                    Emscripten.MountFetchDir(0, "./Content/" + path);
+                } else {
+                    Emscripten.MountFetchFile(0, "./Content/" + path);
+                }
+            }
 
             Console.WriteLine("Content copied to memory");
         });

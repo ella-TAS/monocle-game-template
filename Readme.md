@@ -50,7 +50,7 @@ A collection of all included licenses can be found in the licenses folder.
 
 Monocle Game Template: https://github.com/ella-TAS/monocle-game-template
 
-Monocle: https://github.com/ella-TAS/monocle-engine, derived from https://github.com/JamesMcMahon/monocle-engine
+Monocle: https://github.com/ella-TAS/monocle-engine, originally made by Maddy Thorson and Noel Berry
 
 FNA: https://github.com/FNA-XNA/FNA
 
@@ -60,10 +60,10 @@ Nez effects: https://github.com/prime31/Nez/tree/master/DefaultContentSource/eff
 
 Atlas cruncher: https://github.com/ChevyRay/crunch
 
-Font converter: https://github.com/andryblack/fontbuilder
-
 Lönn Level Editor: https://github.com/CelestialCartographers/Loenn
 
 used together with https://github.com/iSkLz/CelesteTools
 
 or Ogmo Level Editor: https://github.com/Ogmo-Editor-3/OgmoEditor3-CE
+
+Physics Sim: https://github.com/ella-TAS/Aether.Physics2D.FNA, `git submodules add https://github.com/ella-TAS/Aether.Physics2D.FNA` and `<ProjectReference Include="../Aether.Physics2D.FNA/Physics2D/Aether.Physics2D.FNA.Core.csproj" />`

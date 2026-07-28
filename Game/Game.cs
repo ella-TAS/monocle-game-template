@@ -10,6 +10,8 @@ namespace Gamespace;
 
 class Game : Engine {
     public Game() : base(320, 180, 1280, 720, "Gamespace", false) {
+        Version = new Version(0, 0, 1);
+
         Window.AllowUserResizing = true;
         IsMouseVisible = true;
         ExitOnEscapeKeypress = false;

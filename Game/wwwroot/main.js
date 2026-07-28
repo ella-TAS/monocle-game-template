@@ -1,4 +1,3 @@
-
 const wasm = await eval(`import("./_framework/dotnet.js")`);
 const dotnet = wasm.dotnet;
 
@@ -32,7 +31,8 @@ await runtime.runMain();
 // find content base folder
 var loc = window.location.pathname;
 var dir = loc.substring(0, loc.lastIndexOf('/'));
-await exports.Program.PreInit(dir);
+const files = await fetch("./Content/manifest.json").then(r => r.json());
+await exports.Program.PreInit(dir, files);
 console.debug("dotnet initialized");
 
 console.debug("Init...");

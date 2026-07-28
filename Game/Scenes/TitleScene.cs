@@ -1,4 +1,5 @@
 using Gamespace.Data;
+using Gamespace.Render;
 using Microsoft.Xna.Framework.Graphics;
 using Monocle;
 
@@ -27,7 +28,7 @@ public class TitleScene : Scene {
         Timer -= Engine.DeltaTime;
 
         if (Timer <= 0f) {
-            Engine.Scene = new MenuScene();
+            FadeTransition.Transition(this, new MenuScene());
         }
     }
 }

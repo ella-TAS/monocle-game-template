@@ -25,6 +25,7 @@ wasm: artifacts
 	make serve
 
 wasm-build:
+	rm -rf $(release_wasm)
 	make patch
 	dotnet publish Game/Game.Wasm.csproj -c Release
 	make unpatch
@@ -40,6 +41,7 @@ wasm-build:
 	rm -r $(release_wasm)/wwwroot/Content/Graphics
 	find $(release_wasm)/wwwroot/Content/ -name "*.fx" -exec rm {} +
 	find $(release_wasm)/wwwroot/Content/ -name ".git*" -exec rm {} +
+	python3 util/wasm/build_manifest.py $(release_wasm)/wwwroot/Content/
 
 publish-wasm: prepare-publish wasm-build
 	cp -r licenses $(release_wasm)/wwwroot/
@@ -133,15 +135,18 @@ setup:
 	make get-libs
 	make get-fxc
 
-	# for hot reloading
-	sudo sysctl fs.inotify.max_user_instances=1024
-
 	# build all artifacts once
 	make artifacts
+
+	make fix
 
 	####################
 	# SETUP SUCCESSFUL #
 	####################
+
+fix:
+	# for hot reloading
+	sudo sysctl fs.inotify.max_user_instances=1024
 
 git-reset:
 	git submodule update --init --recursive

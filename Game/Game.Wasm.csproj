@@ -1,49 +1,49 @@
 <Project Sdk="Microsoft.NET.Sdk.WebAssembly">
-	<PropertyGroup>
-		<TargetFramework>net10.0</TargetFramework>
-		<RootNamespace>Gamespace</RootNamespace>
-		<AssemblyName>Gamespace</AssemblyName>
-		<AllowUnsafeBlocks>true</AllowUnsafeBlocks>
-		<ImplicitUsings>enable</ImplicitUsings>
-		<EnableUnsafeBinaryFormatterSerialization>true</EnableUnsafeBinaryFormatterSerialization>
-		<Nullable>disable</Nullable>
+    <PropertyGroup>
+        <TargetFramework>net10.0</TargetFramework>
+        <RootNamespace>Gamespace</RootNamespace>
+        <AssemblyName>Gamespace</AssemblyName>
+        <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
+        <ImplicitUsings>enable</ImplicitUsings>
+        <EnableUnsafeBinaryFormatterSerialization>true</EnableUnsafeBinaryFormatterSerialization>
+        <Nullable>disable</Nullable>
 
-		<!--<RunAOTCompilation>true</RunAOTCompilation>-->
-		<CompressionEnabled>false</CompressionEnabled>
-		<TrimMode>partial</TrimMode>
-		<PublishTrimmed>false</PublishTrimmed>
+        <!--<RunAOTCompilation>true</RunAOTCompilation>-->
+        <CompressionEnabled>false</CompressionEnabled>
+        <TrimMode>partial</TrimMode>
+        <PublishTrimmed>false</PublishTrimmed>
 
-		<NoWarn>IDE0017;IDE0028;IDE0090;IDE0220;IDE0290;IDE1006;CA2211</NoWarn>
+        <NoWarn>IDE0017;IDE0028;IDE0090;IDE0220;IDE0290;IDE0305;IDE1006;CA2211</NoWarn>
 
-		<WasmBuildNative>true</WasmBuildNative>
-		<WasmEnableThreads>true</WasmEnableThreads>
-		<WasmEnableSIMD>true</WasmEnableSIMD>
-		<WasmEnableExceptionHandling>true</WasmEnableExceptionHandling>
+        <WasmBuildNative>true</WasmBuildNative>
+        <WasmEnableThreads>true</WasmEnableThreads>
+        <WasmEnableSIMD>true</WasmEnableSIMD>
+        <WasmEnableExceptionHandling>true</WasmEnableExceptionHandling>
 
-		<WasmAllowUndefinedSymbols>true</WasmAllowUndefinedSymbols>
-		<WasmBitcodeCompileOptimizationFlag>-O3</WasmBitcodeCompileOptimizationFlag>
-		<WasmNativeStrip>true</WasmNativeStrip>
-		<WasmStripILAfterAOT>true</WasmStripILAfterAOT>
-		<WasmNativeDebugSymbols>false</WasmNativeDebugSymbols>
+        <WasmAllowUndefinedSymbols>true</WasmAllowUndefinedSymbols>
+        <WasmBitcodeCompileOptimizationFlag>-O3</WasmBitcodeCompileOptimizationFlag>
+        <WasmNativeStrip>true</WasmNativeStrip>
+        <WasmStripILAfterAOT>true</WasmStripILAfterAOT>
+        <WasmNativeDebugSymbols>false</WasmNativeDebugSymbols>
 
-		<EmccExtraLDFlags>-sMIN_WEBGL_VERSION=2 -sMAX_WEBGL_VERSION=2 -sFULL_ES2 -sFULL_ES3 -sWASMFS -sOFFSCREENCANVAS_SUPPORT</EmccExtraLDFlags>
-		<EmccLinkOptimizationFlag>-O3</EmccLinkOptimizationFlag>
-		<EmccCompileOptimizationFlag>-O3</EmccCompileOptimizationFlag>
-		<EmccEnvironment>web,worker</EmccEnvironment>
+        <EmccExtraLDFlags>-sMIN_WEBGL_VERSION=2 -sMAX_WEBGL_VERSION=2 -sFULL_ES2 -sFULL_ES3 -sWASMFS -sOFFSCREENCANVAS_SUPPORT</EmccExtraLDFlags>
+        <EmccLinkOptimizationFlag>-O3</EmccLinkOptimizationFlag>
+        <EmccCompileOptimizationFlag>-O3</EmccCompileOptimizationFlag>
+        <EmccEnvironment>web,worker</EmccEnvironment>
 
-		<DefineConstants>$(DefineConstants);WASM</DefineConstants>
-	</PropertyGroup>
+        <DefineConstants>$(DefineConstants);WASM</DefineConstants>
+    </PropertyGroup>
 
-	<ItemGroup>
-		<!-- FNA -->
-		<NativeFileReference Include="../fnalibs/wasm/**" />
+    <ItemGroup>
+        <!-- FNA -->
+        <NativeFileReference Include="../fnalibs/wasm/**" />
 
-		<!-- WASMFS -->
-		<NativeFileReference Include="../util/wasm/Emscripten.c" />
-	</ItemGroup>
+        <!-- WASMFS -->
+        <NativeFileReference Include="../util/wasm/Emscripten.c" />
+    </ItemGroup>
 
-	<ItemGroup>
-		<ProjectReference Include="../monocle-engine/Monocle.csproj" />
-		<ProjectReference Include="../FNA/FNA.Core.csproj" />
-	</ItemGroup>
+    <ItemGroup>
+        <ProjectReference Include="../monocle-engine/Monocle.csproj" />
+        <ProjectReference Include="../FNA/FNA.Core.csproj" />
+    </ItemGroup>
 </Project>

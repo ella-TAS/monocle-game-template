@@ -13,4 +13,7 @@
             "source.fixAll"
         ]
     },
+    "search.exclude": {
+        "FNA": true
+    },
 }

@@ -9,13 +9,15 @@ public static class Fonts {
     public static PixelFont Medion;
 
     public static void Load() {
-        Nano = new PixelFont("PxNano");
-        Nano.AddFontSize("Fonts/PxNano.fnt");
-        Minor = new PixelFont("PxMinor");
-        Minor.AddFontSize("Fonts/PxMinor.fnt");
-        MinorBold = new PixelFont("PxMinorBold");
-        MinorBold.AddFontSize("Fonts/PxMinorBold.fnt");
-        Medion = new PixelFont("PxMedion");
-        Medion.AddFontSize("Fonts/PxMedion.fnt");
+        Nano = LoadFont("PxNano");
+        Minor = LoadFont("PxMinor");
+        MinorBold = LoadFont("PxMinorBold");
+        Medion = LoadFont("PxMedion");
+    }
+
+    public static PixelFont LoadFont(string name) {
+        PixelFont font = new PixelFont(name);
+        font.AddFontSize($"Fonts/{name}.fnt");
+        return font;
     }
 }
