@@ -27,7 +27,7 @@ public class GameScene : Scene {
 #if DEBUG
         // return to menu
         if (MInput.Keyboard.Pressed(Keys.Escape)) {
-            FadeTransition.Transition(this, new MenuScene());
+            Engine.Scene = new MenuScene();
         }
 #endif
     }

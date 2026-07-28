@@ -80,7 +80,7 @@ with open(out_path, "w+") as w:
     w.write('<!-- The format of this file is documented at https://angelcode.com/products/bmfont/doc/file_format.html -->\n')
     w.write('<font>\n')
     w.write(f'    <info face="{path.name.split(".")[0]}" size="{tile_height}" bold="0" italic="0" charset="" unicode="" stretchH="100" smooth="0" aa="1" padding="2,2,2,2" spacing="0,0" outline="0" />\n')
-    w.write(f'    <common lineHeight="{tile_height}" base="{int(tile_height * 0.75)}" scaleW="{img_width}" scaleH="{img_height}" pages="1" packed="0" />\n')
+    w.write(f'    <common lineHeight="{int(tile_height * 4./3.) + 1}" base="{int(tile_height * 0.75)}" scaleW="{img_width}" scaleH="{img_height}" pages="1" packed="0" />\n')
     w.write('    <pages>\n')
     w.write(f'        <page id="0" file="{path.name}" />\n')
     w.write('    </pages>\n')
