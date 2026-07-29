@@ -11,7 +11,7 @@ public class DitherRenderer : Renderer {
     private readonly RenderBuffer screenBuffer;
 
     public DitherRenderer() {
-        Effect = Effects.ForcePalette;
+        Effect = null;
         Camera = new Camera();
         gameBuffer = new RenderBuffer(Engine.Width, Engine.Height);
         screenBuffer = new RenderBuffer(Engine.Width, Engine.Height);

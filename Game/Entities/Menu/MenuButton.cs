@@ -4,14 +4,14 @@ using Monocle;
 namespace Gamespace;
 
 public class MenuButton : GenericButton {
-    private readonly PixelText textComponent;
+    private readonly PixelText buttonText;
 
     private float scaleTarget = 1f;
     private float scale = 1f;
 
     public MenuButton(Vector2 center, string text, Action ReleaseAction) : base(center, 32, 16, ReleaseAction) {
-        textComponent = new PixelText(Fonts.Minor, Position, text, Color.Green);
-        Add(textComponent);
+        buttonText = new PixelText(Fonts.Minor, Vector2.Zero, text, Color.Green);
+        Add(buttonText);
     }
 
     public override void Update() {
@@ -22,7 +22,7 @@ public class MenuButton : GenericButton {
             scale = scaleTarget;
         }
 
-        textComponent.Scale = Vector2.One * scale;
+        buttonText.Scale = Vector2.One * scale;
     }
 
     public override void OnHover() {

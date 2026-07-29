@@ -1,4 +1,3 @@
-using GMTK26.Data;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
@@ -8,15 +7,17 @@ namespace Gamespace;
 
 public class GameScene : Scene {
     public Camera Camera => Renderer.Camera;
-    private EverythingRenderer Renderer;
+    private TagExcludeRenderer Renderer;
 
     public Vector2 MousePosition => Camera.ScreenToCamera(MInput.Mouse.Position);
 
     public override void Begin() {
-        Renderer = new EverythingRenderer() {
+        Renderer = new TagExcludeRenderer(Tags.HUD) {
             SamplerState = SamplerState.PointClamp,
         };
+        Add(new ParallaxRenderer(Camera));
         Add(Renderer);
+        Add(new SingleTagRenderer(Tags.HUD));
 
         Add(new Player());
     }
