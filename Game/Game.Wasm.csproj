@@ -13,7 +13,7 @@
         <TrimMode>partial</TrimMode>
         <PublishTrimmed>false</PublishTrimmed>
 
-        <NoWarn>IDE0017;IDE0028;IDE0090;IDE0220;IDE0290;IDE0305;IDE1006;CA2211</NoWarn>
+        <NoWarn>IDE0017;IDE0028;IDE0090;IDE0130;IDE0220;IDE0290;IDE0305;IDE1006;CA2211</NoWarn>
 
         <WasmBuildNative>true</WasmBuildNative>
         <WasmEnableThreads>true</WasmEnableThreads>

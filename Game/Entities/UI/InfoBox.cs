@@ -1,10 +1,9 @@
-using Gamespace.Data;
 using Monocle;
 
-namespace Gamespace.Entities.UI;
+namespace Gamespace;
 
 public class InfoBox : Entity {
-    private NineSliceBox box;
+    private readonly NineSliceBox box;
 
     public InfoBox() {
         Depth = -10000;

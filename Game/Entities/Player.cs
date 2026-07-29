@@ -1,8 +1,6 @@
-using Gamespace.Data;
-using Gamespace.Scenes;
 using Monocle;
 
-namespace Gamespace.Entities;
+namespace Gamespace;
 
 public class Player : SceneEntity<GameScene> {
     private readonly Sprite sprite;

@@ -1,9 +1,8 @@
-using Gamespace.Data;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Monocle;
 
-namespace Gamespace.Render;
+namespace Gamespace;
 
 public class DitherRenderer : Renderer {
     public Effect Effect;
@@ -20,7 +19,7 @@ public class DitherRenderer : Renderer {
 
     public override void Render(Scene scene) {
         RenderTargetBinding[] mainTarget = Engine.Graphics.GraphicsDevice.GetRenderTargets();
-    
+
         Engine.Graphics.GraphicsDevice.SetRenderTarget(gameBuffer);
         Engine.Graphics.GraphicsDevice.Clear(Engine.ClearColor);
         Draw.SpriteBatch.Begin(SpriteSortMode.Deferred, BlendState.AlphaBlend, SamplerState.PointClamp, DepthStencilState.None, RasterizerState.CullNone, null, Camera.Matrix);

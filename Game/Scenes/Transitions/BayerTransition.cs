@@ -2,7 +2,7 @@ using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Monocle;
 
-namespace Gamespace.Scenes.Transitions;
+namespace Gamespace;
 
 public class BayerTransition : SceneTransition {
     public BayerTransition(Scene fromScene, Scene toScene) : base(fromScene, toScene, 1f) { }

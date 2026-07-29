@@ -1,10 +1,10 @@
-using Gamespace.Entities;
+using GMTK26.Data;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
 using Monocle;
 
-namespace Gamespace.Scenes;
+namespace Gamespace;
 
 public class GameScene : Scene {
     public Camera Camera => Renderer.Camera;
@@ -23,6 +23,10 @@ public class GameScene : Scene {
 
     public override void Update() {
         base.Update();
+
+        if (Paused) {
+            this[Tags.PauseUpdate].ForEach(e => e.Update());
+        }
 
 #if DEBUG
         // return to menu

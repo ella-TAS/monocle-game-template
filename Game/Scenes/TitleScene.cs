@@ -1,9 +1,7 @@
-using Gamespace.Data;
-using Gamespace.Render;
 using Microsoft.Xna.Framework.Graphics;
 using Monocle;
 
-namespace Gamespace.Scenes;
+namespace Gamespace;
 
 public class TitleScene : Scene {
     private EverythingRenderer Renderer;

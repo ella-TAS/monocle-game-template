@@ -1,7 +1,7 @@
 using Microsoft.Xna.Framework;
 using Monocle;
 
-namespace Gamespace.Entities.UI;
+namespace Gamespace;
 
 public abstract class GenericButton : Entity {
     public Action ButtonAction;

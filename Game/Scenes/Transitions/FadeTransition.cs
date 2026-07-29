@@ -2,7 +2,7 @@ using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Monocle;
 
-namespace Gamespace.Render;
+namespace Gamespace;
 
 public class FadeTransition : SceneTransition {
     public FadeTransition(Scene fromScene, Scene toScene) : base(fromScene, toScene, 2f) { }

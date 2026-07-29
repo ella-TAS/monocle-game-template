@@ -1,8 +1,7 @@
-using Gamespace.Data;
 using Microsoft.Xna.Framework;
 using Monocle;
 
-namespace Gamespace.Entities.UI;
+namespace Gamespace;
 
 public class MenuButton : GenericButton {
     private readonly PixelText textComponent;

@@ -1,6 +1,6 @@
 using Monocle;
 
-namespace Gamespace.Data;
+namespace Gamespace;
 
 public static class Fonts {
     public static PixelFont Nano;

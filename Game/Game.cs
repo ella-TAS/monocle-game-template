@@ -1,7 +1,4 @@
-﻿using Gamespace.Data;
-using Gamespace.Save;
-using Gamespace.Scenes;
-using Microsoft.Xna.Framework;
+﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Input;
 using Monocle;
 using System.Diagnostics;
@@ -41,7 +38,8 @@ class Game : Engine {
         base.LoadContent();
         GFX.Load();
         Fonts.Load();
-        // Effects.Load();
+        Effects.Load();
+        SFX.Load();
 
         contentLoad.Stop();
         Logger.Release("Monocle", $"Content loaded in {contentLoad.ElapsedMilliseconds} ms");

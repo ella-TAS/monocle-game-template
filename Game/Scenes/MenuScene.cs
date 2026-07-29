@@ -1,10 +1,8 @@
-using Gamespace.Entities.UI;
-using Gamespace.Render;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Monocle;
 
-namespace Gamespace.Scenes;
+namespace Gamespace;
 
 public class MenuScene : Scene {
     private EverythingRenderer Renderer;

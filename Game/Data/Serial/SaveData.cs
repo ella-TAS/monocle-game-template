@@ -1,6 +1,6 @@
 using Monocle;
 
-namespace Gamespace.Save;
+namespace Gamespace;
 
 public class SaveData {
     private const string FILE = "Save.json";
@@ -8,6 +8,8 @@ public class SaveData {
     public static SaveData Instance;
 
     public int Money = 100;
+    public float SFXVolume = 1f;
+    public float MusicVolume = 1f;
 
     public static void Save() {
         SaveLoad.SafeSave(Instance, FILE, MODE);

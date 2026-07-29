@@ -1,6 +1,6 @@
 using Monocle;
 
-namespace Gamespace.Data;
+namespace Gamespace;
 
 public static class GFX {
     public static Atlas Game;
