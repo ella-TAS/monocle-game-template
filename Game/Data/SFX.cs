@@ -43,9 +43,7 @@ public static class SFX {
         }
     }
 
-    /// <summary>
-    /// Converts a linear scale to something that sounds linear
-    /// </summary>
+    /// <summary>Converts a linear scale to something that sounds linear</summary>
     public static float SliderToVolume(float volume) {
         // {10^{2x}-1}/{99}
         return (float) (Math.Pow(10, 2 * volume) - 1) / 99f;

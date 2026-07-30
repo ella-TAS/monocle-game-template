@@ -4,13 +4,13 @@ using Monocle;
 
 namespace Gamespace;
 
-public class DitherRenderer : Renderer {
+public class EffectRenderer : Renderer {
     public Effect Effect;
     public Camera Camera;
     private readonly RenderBuffer gameBuffer;
     private readonly RenderBuffer screenBuffer;
 
-    public DitherRenderer() {
+    public EffectRenderer() {
         Effect = null;
         Camera = new Camera();
         gameBuffer = new RenderBuffer(Engine.Width, Engine.Height);

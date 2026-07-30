@@ -12,6 +12,7 @@ from pathlib import Path
 
 SUCCESS = 0
 FAIL = 1
+NAME = "Gamespace"
 
 def error(msg, doExit=True):
     print(f"\nError in file {argv[1]}")
@@ -60,11 +61,7 @@ if len(namespaces) > 1:
     exit(FAIL)
 
 namespace = namespaces[0].groups()[0]
-name = namespace.split(".")[1:]
-name = "/".join(name)
-if name: name = "/" + name
-
-if "/" + str(path.parent) != "/Game" + name:
-    error(f"Namespace {namespace} doesn't match folder structure {path.parent}")
+if namespace != NAME:
+    error(f"Namespace {namespace} doesn't match project {NAME}")
 
 exit(SUCCESS)

@@ -1,0 +1,19 @@
+[Dialogtextstring]
+my dialog
+my dialog line 2
+here dilaog ends
+
+
+
+[dialoganotherstriung]
+dialog
+dialog2
+[dialogstring]dialog
+dialog
+[dialogst] my dialog short
+
+[dialogqat] my dialog short
+
+[my_dialog]
+dialog
+[new]dialog test

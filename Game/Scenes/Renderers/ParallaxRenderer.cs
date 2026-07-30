@@ -4,7 +4,7 @@ using Monocle;
 namespace Gamespace;
 
 public class ParallaxRenderer : Renderer {
-    public List<Backdrop> Backdrops;
+    public List<Backdrop> Backdrops = [];
     public Effect Effect;
     public Camera Camera;
 

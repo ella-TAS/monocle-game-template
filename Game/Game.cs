@@ -40,6 +40,7 @@ class Game : Engine {
         Fonts.Load();
         Effects.Load();
         SFX.Load();
+        Dialog.Load();
 
         contentLoad.Stop();
         Logger.Release("Monocle", $"Content loaded in {contentLoad.ElapsedMilliseconds} ms");
