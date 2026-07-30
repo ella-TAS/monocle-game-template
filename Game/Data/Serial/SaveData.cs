@@ -7,7 +7,7 @@ public class SaveData {
     private const SaveLoad.SerializeMode MODE = SaveLoad.SerializeMode.Json;
     public static SaveData Instance;
 
-    public int Money = 100;
+    public Dialog.Languages Language = Dialog.Languages.English;
     public float SFXVolume = 1f;
     public float MusicVolume = 1f;
 
@@ -16,6 +16,6 @@ public class SaveData {
     }
 
     public static void Load() {
-        Instance = SaveLoad.Load<SaveData>(FILE, MODE) ?? new SaveData();
+        Instance = SaveLoad.SafeLoad<SaveData>(FILE, MODE) ?? new SaveData();
     }
 }

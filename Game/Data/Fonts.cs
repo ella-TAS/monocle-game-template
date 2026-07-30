@@ -17,7 +17,7 @@ public static class Fonts {
 
     public static PixelFont LoadFont(string name) {
         PixelFont font = new PixelFont(name);
-        font.AddFontSize($"Fonts/{name}.fnt");
+        font.AddFontSize($"Dialog/Fonts/{name}.fnt");
         return font;
     }
 }
