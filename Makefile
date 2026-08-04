@@ -115,7 +115,6 @@ qa:
 setup:
 	# check that basic tools exist
 	wget -V
-	zip -v
 	unzip -v
 	python3 -V
 	git -v
@@ -124,6 +123,8 @@ setup:
 	make git-reset
 
 	# install required tools
+	sudo apt update
+	sudo apt install -y zip
 	sudo apt install -y dotnet-sdk-10.0
 	sudo apt install -y dotnet-runtime-10.0
 	sudo apt install -y wine
