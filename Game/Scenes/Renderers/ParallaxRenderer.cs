@@ -6,11 +6,9 @@ namespace Gamespace;
 public class ParallaxRenderer : Renderer {
     public List<Backdrop> Backdrops = [];
     public Effect Effect;
-    public Camera Camera;
 
-    public ParallaxRenderer(Camera camera) {
+    public ParallaxRenderer() {
         Effect = null;
-        Camera = camera;
     }
 
     public override void Update(Scene scene) {
@@ -24,7 +22,7 @@ public class ParallaxRenderer : Renderer {
 
         foreach (Backdrop backdrop in Backdrops)
             if (backdrop.Visible)
-                backdrop.Render(Camera);
+                backdrop.Render(scene.Camera);
 
         Draw.SpriteBatch.End();
     }

@@ -4,15 +4,12 @@ using Monocle;
 
 namespace Gamespace;
 
-public class EffectRenderer : Renderer {
-    public Effect Effect;
+public class PixelRenderer : Renderer {
     private readonly RenderBuffer gameBuffer;
-    private readonly RenderBuffer screenBuffer;
+    public Effect Effect;
 
-    public EffectRenderer() {
-        Effect = null;
+    public PixelRenderer() {
         gameBuffer = new RenderBuffer(Engine.Width, Engine.Height);
-        screenBuffer = new RenderBuffer(Engine.Width, Engine.Height);
     }
 
     public override void Render(Scene scene) {
@@ -27,32 +24,16 @@ public class EffectRenderer : Renderer {
         Draw.SpriteBatch.End();
 
 
-        Engine.Graphics.GraphicsDevice.SetRenderTarget(screenBuffer);
-        Engine.Graphics.GraphicsDevice.Clear(Engine.ClearColor);
-        Draw.SpriteBatch.Begin(SpriteSortMode.Deferred, BlendState.AlphaBlend, SamplerState.PointClamp, DepthStencilState.None, RasterizerState.CullNone, Effect);
-
-        Draw.SpriteBatch.Draw(gameBuffer, Vector2.Zero, Color.White);
-
-        Draw.SpriteBatch.End();
-
-
         Engine.Graphics.GraphicsDevice.SetRenderTargets(mainTarget);
         Engine.Graphics.GraphicsDevice.Clear(Engine.ClearColor);
         Draw.SpriteBatch.Begin(SpriteSortMode.Deferred, BlendState.AlphaBlend, SamplerState.PointClamp, DepthStencilState.Default, RasterizerState.CullNone, null);
 
         float scale = Engine.ViewWidth / (float) Engine.Width;
-        Draw.SpriteBatch.Draw(screenBuffer, Engine.ViewportPosition, null, Color.White, 0f, Vector2.Zero, scale, SpriteEffects.None, 0f);
+        Draw.SpriteBatch.Draw(gameBuffer, Engine.ViewportPosition, null, Color.White, 0f, Vector2.Zero, scale, SpriteEffects.None, 0f);
         if (Engine.Commands.Open) {
             scene.Entities.DebugRender(scene.Camera);
         }
 
         Draw.SpriteBatch.End();
-    }
-
-    public override void Dispose() {
-        base.Dispose();
-
-        gameBuffer.Dispose();
-        screenBuffer.Dispose();
     }
 }

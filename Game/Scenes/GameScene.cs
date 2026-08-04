@@ -6,7 +6,6 @@ using Monocle;
 namespace Gamespace;
 
 public class GameScene : Scene {
-    public Camera Camera => Renderer.Camera;
     private TagExcludeRenderer Renderer;
 
     public Vector2 MousePosition => Camera.ScreenToCamera(MInput.Mouse.Position);
@@ -15,7 +14,7 @@ public class GameScene : Scene {
         Renderer = new TagExcludeRenderer(Tags.HUD) {
             SamplerState = SamplerState.PointClamp,
         };
-        Add(new ParallaxRenderer(Camera));
+        Add(new ParallaxRenderer());
         Add(Renderer);
         Add(new SingleTagRenderer(Tags.HUD));
 

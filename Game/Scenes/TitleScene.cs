@@ -12,8 +12,8 @@ public class TitleScene : Scene {
         Renderer = new EverythingRenderer() {
             SamplerState = SamplerState.PointClamp,
         };
-        Renderer.Camera.CenterOrigin();
         Add(Renderer);
+        Camera.CenterOrigin();
 
         Entity title = new Entity();
         title.Add(new Image(GFX.Game["title"]).CenterOrigin());

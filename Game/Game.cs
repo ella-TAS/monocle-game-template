@@ -34,8 +34,9 @@ class Game : Engine {
     protected override void LoadContent() {
         Stopwatch contentLoad = Stopwatch.StartNew();
 
-        base.LoadContent();
         SaveData.Load();
+
+        base.LoadContent();
         GFX.Load();
         Fonts.Load();
         Effects.Load();
