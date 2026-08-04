@@ -21,7 +21,6 @@ class Game : Engine {
     protected override void Initialize() {
         base.Initialize();
 
-        SaveData.Load();
         Scene = new TitleScene();
 
 #if !DEBUG
@@ -36,6 +35,7 @@ class Game : Engine {
         Stopwatch contentLoad = Stopwatch.StartNew();
 
         base.LoadContent();
+        SaveData.Load();
         GFX.Load();
         Fonts.Load();
         Effects.Load();
