@@ -5,13 +5,10 @@ using Monocle;
 namespace Gamespace;
 
 public class MenuScene : Scene {
-    private EverythingRenderer Renderer;
-
     public override void Begin() {
-        Renderer = new EverythingRenderer() {
+        Add(new EverythingRenderer() {
             SamplerState = SamplerState.PointClamp,
-        };
-        Add(Renderer);
+        });
 
         Add(new MenuButton(new Vector2(50, 50), "Play",
             () => FadeTransition.Transition(this, new GameScene())

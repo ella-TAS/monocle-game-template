@@ -6,7 +6,6 @@ namespace Gamespace;
 
 public class PixelRenderer : Renderer {
     private readonly RenderBuffer gameBuffer;
-    public Effect Effect;
 
     public PixelRenderer() {
         gameBuffer = new RenderBuffer(Engine.Width, Engine.Height);
@@ -35,5 +34,11 @@ public class PixelRenderer : Renderer {
         }
 
         Draw.SpriteBatch.End();
+    }
+    
+    public override void Dispose() {
+        base.Dispose();
+
+        gameBuffer.Dispose();
     }
 }

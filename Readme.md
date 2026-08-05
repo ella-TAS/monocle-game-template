@@ -36,6 +36,14 @@ Graphics (Recommended): Vulkan support
 
 Other: SDL_GameController devices fully supported
 
+## Windows Setup
+- Recommended applications: Github Desktop, VS Code (+ WSL extension)
+- Install Ubuntu from the MS Store (experience: MS Store version works better than console install)
+- Clone the Project to a location in your Windows file system (not in WSL)
+- Open the WSL console and navigate to the project folder (`cd /mnt/c/users/...`)
+- `make setup` (retry and complain until it shows `### SETUP COMPLETE ###`)
+- `make run`
+
 ## Removing WASM Extras
 If you don't need the WebAssembly build, you can run `make remove-wasm` once and then remove the wasm-related targets from the Makefile.
 

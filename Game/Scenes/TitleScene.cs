@@ -4,15 +4,12 @@ using Monocle;
 namespace Gamespace;
 
 public class TitleScene : Scene {
-    private EverythingRenderer Renderer;
-
     private float Timer = 1f;
 
     public override void Begin() {
-        Renderer = new EverythingRenderer() {
+        Add(new EverythingRenderer() {
             SamplerState = SamplerState.PointClamp,
-        };
-        Add(Renderer);
+        });
         Camera.CenterOrigin();
 
         Entity title = new Entity();
