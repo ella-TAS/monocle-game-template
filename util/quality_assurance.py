@@ -26,7 +26,7 @@ if len(argv) != 2:
 try:
     with open(argv[1], "r", encoding="utf-8-sig") as file:
         content = file.read().splitlines()
-except Exception:
+except:
     print(f"File {argv[1]} not found")
     exit(FAIL)
 

@@ -24,7 +24,7 @@ try:
     img_height, img_width, _ = img.shape
     path = Path(argv[1])
     out_path = argv[1][:argv[1].rfind(".")] + ".fnt"
-except Exception:
+except:
     print(f"Error reading image {argv[1]}")
     exit(FAIL)
 
@@ -32,7 +32,7 @@ try:
     tile_width = int(argv[2])
     tile_height = int(argv[3])
     spacing = int(argv[4])
-except Exception:
+except:
     print("Error: tile width/height and spacing must be numbers")
     exit(FAIL)
 
