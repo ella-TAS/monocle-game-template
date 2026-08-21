@@ -16,5 +16,11 @@
         "prefix": "dissect",
         "body": "Logger.Dissect($0);",
         "description": "Dissect object to console"
+    },
+    "Summary Comment": {
+        "scope": "csharp",
+        "prefix": "summary",
+        "body": "/// <summary>\n/// $0\n/// </summary>",
+        "description": "<summary> comment for documentation"
     }
 }
