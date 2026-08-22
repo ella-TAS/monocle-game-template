@@ -19,6 +19,9 @@ public class PixelRenderer : Renderer {
         Draw.SpriteBatch.Begin(SpriteSortMode.Deferred, BlendState.AlphaBlend, SamplerState.PointClamp, DepthStencilState.None, RasterizerState.CullNone, null, scene.Camera.Matrix);
 
         scene.Entities.Render();
+        if (Engine.Commands.Open) {
+            scene.Entities.DebugRender(scene.Camera);
+        }
 
         Draw.SpriteBatch.End();
 
@@ -29,13 +32,10 @@ public class PixelRenderer : Renderer {
 
         float scale = Engine.ViewWidth / (float) Engine.Width;
         Draw.SpriteBatch.Draw(gameBuffer, Engine.ViewportPosition, null, Color.White, 0f, Vector2.Zero, scale, SpriteEffects.None, 0f);
-        if (Engine.Commands.Open) {
-            scene.Entities.DebugRender(scene.Camera);
-        }
 
         Draw.SpriteBatch.End();
     }
-    
+
     public override void Dispose() {
         base.Dispose();
 
