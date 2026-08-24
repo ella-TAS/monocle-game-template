@@ -9,7 +9,7 @@ public class GameScene : Scene {
         Add(new TagExcludeRenderer(Tags.HUD) {
             SamplerState = SamplerState.PointClamp,
         });
-        Add(new ParallaxRenderer());
+        Add(new BackdropRenderer());
         Add(new SingleTagRenderer(Tags.HUD));
 
         Add(new Player());
