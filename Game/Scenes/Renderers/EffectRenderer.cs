@@ -16,10 +16,8 @@ public class EffectRenderer : Renderer {
     }
 
     public override void Render(Scene scene) {
-        RenderTargetBinding[] mainTarget = Engine.Graphics.GraphicsDevice.GetRenderTargets();
-
         Engine.Graphics.GraphicsDevice.SetRenderTarget(gameBuffer);
-        Engine.Graphics.GraphicsDevice.Clear(Engine.ClearColor);
+        Engine.Graphics.GraphicsDevice.Clear(Color.Transparent);
         Draw.SpriteBatch.Begin(SpriteSortMode.Deferred, BlendState.AlphaBlend, SamplerState.PointClamp, DepthStencilState.None, RasterizerState.CullNone, null, scene.Camera.Matrix);
 
         scene.Entities.Render();
@@ -28,7 +26,7 @@ public class EffectRenderer : Renderer {
 
 
         Engine.Graphics.GraphicsDevice.SetRenderTarget(screenBuffer);
-        Engine.Graphics.GraphicsDevice.Clear(Engine.ClearColor);
+        Engine.Graphics.GraphicsDevice.Clear(Color.Transparent);
         Draw.SpriteBatch.Begin(SpriteSortMode.Deferred, BlendState.AlphaBlend, SamplerState.PointClamp, DepthStencilState.None, RasterizerState.CullNone, Effect);
 
         Draw.SpriteBatch.Draw(gameBuffer, Vector2.Zero, Color.White);
@@ -36,8 +34,7 @@ public class EffectRenderer : Renderer {
         Draw.SpriteBatch.End();
 
 
-        Engine.Graphics.GraphicsDevice.SetRenderTargets(mainTarget);
-        Engine.Graphics.GraphicsDevice.Clear(Engine.ClearColor);
+        Engine.Graphics.GraphicsDevice.SetRenderTargets(null);
         Draw.SpriteBatch.Begin(SpriteSortMode.Deferred, BlendState.AlphaBlend, SamplerState.PointClamp, DepthStencilState.Default, RasterizerState.CullNone, null);
 
         float scale = Engine.ViewWidth / (float) Engine.Width;
