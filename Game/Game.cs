@@ -1,4 +1,5 @@
 ﻿using Microsoft.Xna.Framework;
+using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
 using Monocle;
 using System.Diagnostics;
@@ -19,6 +20,10 @@ class Game : Engine {
     }
 
     protected override void Initialize() {
+        // required if using multiple renderers
+        GraphicsDevice.PresentationParameters.RenderTargetUsage = RenderTargetUsage.PreserveContents;
+        Graphics.ApplyChanges();
+
         base.Initialize();
 
         Scene = new TitleScene();
@@ -42,7 +47,7 @@ class Game : Engine {
         Effects.Load();
         SFX.Load();
         Dialog.Load(SaveData.Instance.Language);
-        
+
         Tags.Init();
 
         contentLoad.Stop();
