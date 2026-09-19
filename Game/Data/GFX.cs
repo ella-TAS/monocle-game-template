@@ -10,4 +10,14 @@ public static class GFX {
         Game = Atlas.FromAtlas("Atlases/.xml", Atlas.AtlasDataFormat.CrunchXml);
         Sprites = new SpriteBank(Game, "Sprites.xml");
     }
+
+    public static Image Image(string path) {
+        return new Image(
+            Game.GetOrDefault(path, Game["missing"])
+        );
+    }
+
+    public static Sprite Sprite(string path) {
+        return Sprites.Create(path);
+    }
 }
