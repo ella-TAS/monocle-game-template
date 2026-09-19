@@ -17,6 +17,8 @@ class Game : Engine {
         // fixed framerate at 60 fps
         IsFixedTimeStep = true;
         TargetElapsedTime = TimeSpan.FromSeconds(1.0 / 60.0);
+        
+        MonocleSettings.JsonPrettyPrint = true;
     }
 
     protected override void Initialize() {

@@ -8,8 +8,6 @@ public abstract class GenericButton : Entity {
     public bool Hovering;
     public bool Clicked;
 
-    protected static Vector2 MousePosition => MInput.Mouse.Position;
-
     public GenericButton(Vector2 center, float width, float height, Action ReleaseAction) : base(center) {
         Collider = new Hitbox(width, height);
         Collider.CenterOrigin();
@@ -19,7 +17,7 @@ public abstract class GenericButton : Entity {
     public override void Update() {
         base.Update();
 
-        if (Collider.Collide(MousePosition)) {
+        if (Collider.Collide(Scene.MousePosition)) {
             // hover start
             if (!Hovering) {
                 Hovering = true;
