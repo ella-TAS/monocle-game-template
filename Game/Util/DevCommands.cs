@@ -30,6 +30,6 @@ public static class DevCommands {
         // F5: reload scene
         Engine.Commands.FunctionKeyActions[4] = () => Engine.Scene = new GameScene();
         // F12: clear save data
-        Engine.Commands.FunctionKeyActions[11] = () => SaveData.Instance = new SaveData();
+        Engine.Commands.FunctionKeyActions[11] = SaveData.Reset;
     }
 }

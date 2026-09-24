@@ -18,4 +18,8 @@ public class SaveData {
     public static void Load() {
         Instance = SaveLoad.SafeLoad<SaveData>(FILE, MODE) ?? new SaveData();
     }
+
+    public static void Reset() {
+        Instance = new SaveData();
+    }
 }

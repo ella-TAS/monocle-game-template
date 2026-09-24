@@ -2,6 +2,7 @@
 /util/fxc
 /Game/Content/Atlases
 *.fxb
+*.aseprite
 *.zip
 
 # Build results
