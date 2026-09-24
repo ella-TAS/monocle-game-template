@@ -6,7 +6,7 @@ public class Player : SceneEntity<GameScene> {
     private readonly Sprite sprite;
 
     public Player() {
-        sprite = GFX.Sprites.Create("player");
+        sprite = GFX.Sprite("player");
         sprite.CenterOrigin();
         Add(sprite);
     }

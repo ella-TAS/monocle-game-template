@@ -13,7 +13,7 @@ public class TitleScene : Scene {
         Camera.CenterOrigin();
 
         Entity title = new Entity();
-        title.Add(new Image(GFX.Game["title"]).CenterOrigin());
+        title.Add(GFX.Image("title").CenterOrigin());
         Add(title);
     }
 
