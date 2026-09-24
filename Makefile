@@ -187,7 +187,7 @@ get-fxc:
 	wget $(fxc_source)/fxc.exe -O util/fxc/fxc.exe
 
 remove-wasm:
-	rm -f license/FNA-web-template.txt
+	rm -f licenses/FNA-web-template.txt
 	rm -f Game/Game.Wasm.csproj
 	rm -rf fnalibs/wasm
 	rm -rf util/wasm

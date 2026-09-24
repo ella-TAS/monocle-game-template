@@ -17,7 +17,7 @@ class Game : Engine {
         // fixed framerate at 60 fps
         IsFixedTimeStep = true;
         TargetElapsedTime = TimeSpan.FromSeconds(1.0 / 60.0);
-        
+
         MonocleSettings.JsonPrettyPrint = true;
     }
 
@@ -27,6 +27,8 @@ class Game : Engine {
         Graphics.ApplyChanges();
 
         base.Initialize();
+        Tags.Init();
+        DevCommands.Register();
 
         Scene = new TitleScene();
 
@@ -50,8 +52,6 @@ class Game : Engine {
         SFX.Load();
         Dialog.Load(SaveData.Instance.Language);
 
-        Tags.Init();
-
         contentLoad.Stop();
         Logger.Release("Monocle", $"Content loaded in {contentLoad.ElapsedMilliseconds} ms");
     }
@@ -59,22 +59,7 @@ class Game : Engine {
     protected override void Update(GameTime gameTime) {
         base.Update(gameTime);
 
-#if DEBUG
-        // fullscreen toggle
-        if (MInput.Keyboard.Pressed(Keys.F4)) {
-            ToggleFullscreen();
-        }
 
-        // debug reset
-        if (MInput.Keyboard.Pressed(Keys.R)) {
-            Scene = new MenuScene();
-        }
-
-        // debug save data reset
-        if (MInput.Keyboard.Pressed(Keys.S)) {
-            SaveData.Instance = new SaveData();
-        }
-#endif
     }
 
     protected override void OnExiting(object sender, EventArgs args) {
