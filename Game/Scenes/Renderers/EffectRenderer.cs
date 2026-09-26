@@ -34,11 +34,10 @@ public class EffectRenderer : Renderer {
         Draw.SpriteBatch.End();
 
 
-        Engine.Graphics.GraphicsDevice.SetRenderTargets(null);
-        Draw.SpriteBatch.Begin(SpriteSortMode.Deferred, BlendState.AlphaBlend, SamplerState.PointClamp, DepthStencilState.Default, RasterizerState.CullNone, null);
+        Engine.ResetRenderTarget();
+        Draw.SpriteBatch.Begin(SpriteSortMode.Deferred, BlendState.AlphaBlend, SamplerState.PointClamp, DepthStencilState.Default, RasterizerState.CullNone, null, Engine.ScreenMatrix);
 
-        float scale = Engine.ViewWidth / (float) Engine.Width;
-        Draw.SpriteBatch.Draw(screenBuffer, Engine.ViewportPosition, null, Color.White, 0f, Vector2.Zero, scale, SpriteEffects.None, 0f);
+        Draw.SpriteBatch.Draw(screenBuffer, Vector2.Zero, Color.White);
         if (Engine.Commands.Open) {
             scene.Entities.DebugRender(scene.Camera);
         }

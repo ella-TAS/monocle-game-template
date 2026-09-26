@@ -24,11 +24,10 @@ public class PixelRenderer : Renderer {
         Draw.SpriteBatch.End();
 
 
-        Engine.Graphics.GraphicsDevice.SetRenderTargets(null);
-        Draw.SpriteBatch.Begin(SpriteSortMode.Deferred, BlendState.AlphaBlend, SamplerState.PointClamp, DepthStencilState.Default, RasterizerState.CullNone, null);
+        Engine.ResetRenderTarget();
+        Draw.SpriteBatch.Begin(SpriteSortMode.Deferred, BlendState.AlphaBlend, SamplerState.PointClamp, DepthStencilState.Default, RasterizerState.CullNone, null, Engine.ScreenMatrix);
 
-        float scale = Engine.ViewWidth / (float) Engine.Width;
-        Draw.SpriteBatch.Draw(gameBuffer, Engine.ViewportPosition, null, Color.White, 0f, Vector2.Zero, scale, SpriteEffects.None, 0f);
+        Draw.SpriteBatch.Draw(gameBuffer, Vector2.Zero, Color.White);
 
         Draw.SpriteBatch.End();
     }

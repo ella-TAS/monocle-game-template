@@ -9,15 +9,9 @@ public static class Fonts {
     public static PixelFont Medion;
 
     public static void Load() {
-        Nano = LoadFont("PxNano");
-        Minor = LoadFont("PxMinor");
-        MinorBold = LoadFont("PxMinorBold");
-        Medion = LoadFont("PxMedion");
-    }
-
-    public static PixelFont LoadFont(string name) {
-        PixelFont font = new PixelFont(name);
-        font.AddFontSize($"Dialog/Fonts/{name}.fnt");
-        return font;
+        Nano = new PixelFont("Dialog/Fonts/PxNano.fnt");
+        Minor = new PixelFont("Dialog/Fonts/PxMinor.fnt");
+        MinorBold = new PixelFont("Dialog/Fonts/PxMinorBold.fnt");
+        Medion = new PixelFont("Dialog/Fonts/PxMedion.fnt");
     }
 }
