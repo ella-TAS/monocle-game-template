@@ -12,8 +12,6 @@ public class BackdropRenderer : Renderer {
     }
 
     public override void Update(Scene scene) {
-        base.Update(scene);
-
         Backdrops.ForEach(b => b.Update());
     }
 

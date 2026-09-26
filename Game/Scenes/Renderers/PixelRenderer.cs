@@ -33,8 +33,6 @@ public class PixelRenderer : Renderer {
     }
 
     public override void Dispose() {
-        base.Dispose();
-
         gameBuffer.Dispose();
     }
 }

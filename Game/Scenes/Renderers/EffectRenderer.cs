@@ -46,8 +46,6 @@ public class EffectRenderer : Renderer {
     }
 
     public override void Dispose() {
-        base.Dispose();
-
         gameBuffer.Dispose();
         screenBuffer.Dispose();
     }
