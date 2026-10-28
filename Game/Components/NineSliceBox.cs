@@ -1,0 +1,72 @@
+using Microsoft.Xna.Framework;
+using Monocle;
+
+namespace Gamespace;
+
+public class NineSliceBox : Component {
+    public Vector2 Position;
+    public int Width;
+    public int Height;
+    private MTexture[,] nineSlice;
+    private int tileSize;
+
+    public NineSliceBox(string path, int boxWidth, int boxHeight, Vector2 offset = default, int tileSize = 8) : base(false, true) {
+        Position = offset;
+        Width = boxWidth;
+        Height = boxHeight;
+        this.tileSize = tileSize;
+
+        nineSlice = new MTexture[3, 3];
+        MTexture texture = GFX.Game[path];
+        for (int y = 0; y < 3; y++) {
+            for (int x = 0; x < 3; x++) {
+                nineSlice[x, y] = texture.GetSubtexture(new Rectangle(x * tileSize, y * tileSize, tileSize, tileSize));
+            }
+        }
+    }
+
+    public override void Render() {
+        base.Render();
+
+        Vector2 drawPos = (Entity.Position + Position).Round();
+        Vector2 offset = Vector2.Zero;
+
+        // first row
+        nineSlice[0, 0].Draw(drawPos + offset);
+        offset.X += tileSize;
+
+        for (; offset.X < Width - tileSize; offset.X += tileSize) {
+            nineSlice[1, 0].Draw(drawPos + offset);
+        }
+
+        offset.X = Width - tileSize;
+        nineSlice[2, 0].Draw(drawPos + offset);
+        offset.Y += tileSize;
+
+        // middle rows
+        for (; offset.Y < Height - tileSize; offset.Y += tileSize) {
+            offset.X = 0f;
+            nineSlice[0, 1].Draw(drawPos + offset);
+            offset.X += tileSize;
+
+            for (; offset.X < Width - tileSize; offset.X += tileSize) {
+                nineSlice[1, 1].Draw(drawPos + offset);
+            }
+
+            offset.X = Width - tileSize;
+            nineSlice[2, 1].Draw(drawPos + offset);
+        }
+
+        // last row
+        offset = new Vector2(0f, Height - tileSize);
+        nineSlice[0, 2].Draw(drawPos + offset);
+        offset.X += tileSize;
+
+        for (; offset.X < Width - tileSize; offset.X += tileSize) {
+            nineSlice[1, 2].Draw(drawPos + offset);
+        }
+
+        offset.X = Width - tileSize;
+        nineSlice[2, 2].Draw(drawPos + offset);
+    }
+}
