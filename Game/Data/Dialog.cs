@@ -39,10 +39,6 @@ public static partial class Dialog {
                 Logger.DebugCrash("Dialog", $"Duplicate dialog key [{match.Groups[1].Value}] in {Language}");
             }
         }
-
-        foreach (KeyValuePair<string, string> kv in Data) {
-            Logger.Log($"[{kv.Key}] {kv.Value}");
-        }
     }
 
     private static string PrepareText(string raw) {
