@@ -4,16 +4,20 @@ using Monocle;
 namespace Gamespace;
 
 public class ButtonComponent : Component {
-    public Action ButtonAction;
+    public Action HoverAction;
+    public Action HoverEndAction;
+    public Action ClickAction;
+    public Action ReleaseAction;
+
     public bool Hovering;
     public bool Clicked;
     protected Vector2 Offset;
     protected readonly Hitbox Collider;
 
-    public ButtonComponent(float width, float height, Action releaseAction, Vector2 offset = default) : base(true, false) {
+    public ButtonComponent(float width, float height, Action releaseAction = null, Vector2 offset = default) : base(true, false) {
         Collider = new Hitbox(width, height);
         Collider.CenterOrigin();
-        ButtonAction = releaseAction;
+        ReleaseAction = releaseAction;
         Offset = offset;
     }
 
@@ -26,19 +30,19 @@ public class ButtonComponent : Component {
             // hover start
             if (!Hovering) {
                 Hovering = true;
-                OnHover();
+                HoverAction?.Invoke();
             }
 
             // clicked on button
             if (MInput.Mouse.PressedLeftButton) {
                 Clicked = true;
-                OnClick();
+                ClickAction?.Invoke();
             }
 
             // released after clicking button
             if (MInput.Mouse.ReleasedLeftButton && Clicked) {
                 Clicked = false;
-                OnRelease();
+                ReleaseAction?.Invoke();
             }
         } else {
             // reset clicking progress
@@ -47,24 +51,8 @@ public class ButtonComponent : Component {
             // hover end
             if (Hovering) {
                 Hovering = false;
-                OnHoverEnd();
+                HoverEndAction?.Invoke();
             }
         }
-    }
-
-    public void OnHover() {
-
-    }
-
-    public void OnHoverEnd() {
-
-    }
-
-    public void OnClick() {
-
-    }
-
-    public void OnRelease() {
-        ButtonAction();
     }
 }

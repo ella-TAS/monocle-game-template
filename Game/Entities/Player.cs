@@ -1,3 +1,5 @@
+#nullable enable
+
 using Monocle;
 
 namespace Gamespace;

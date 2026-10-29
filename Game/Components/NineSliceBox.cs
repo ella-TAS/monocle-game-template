@@ -5,10 +5,11 @@ namespace Gamespace;
 
 public class NineSliceBox : Component {
     public Vector2 Position;
+    public Vector2 Origin;
     public int Width;
     public int Height;
-    private MTexture[,] nineSlice;
-    private int tileSize;
+    private readonly MTexture[,] nineSlice;
+    private readonly int tileSize;
 
     public NineSliceBox(string path, int boxWidth, int boxHeight, Vector2 offset = default, int tileSize = 8) : base(false, true) {
         Position = offset;
@@ -28,7 +29,7 @@ public class NineSliceBox : Component {
     public override void Render() {
         base.Render();
 
-        Vector2 drawPos = (Entity.Position + Position).Round();
+        Vector2 drawPos = (Entity.Position + Position - Origin).Round();
         Vector2 offset = Vector2.Zero;
 
         // first row
@@ -68,5 +69,9 @@ public class NineSliceBox : Component {
 
         offset.X = Width - tileSize;
         nineSlice[2, 2].Draw(drawPos + offset);
+    }
+
+    public void CenterOrigin() {
+        Origin = new Vector2(Width, Height) / 2;
     }
 }
