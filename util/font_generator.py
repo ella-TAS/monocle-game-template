@@ -91,4 +91,4 @@ with open(out_path, "w+") as w:
     w.write('    <kernings count="1">\n')
     w.write('        <kerning first="32" second="32" amount="-1" />\n')
     w.write('    </kernings>\n')
-    w.write('</font>')
+    w.write('</font>\n')
