@@ -7,7 +7,7 @@ public class InfoBox : Entity {
 
     public InfoBox() {
         Depth = -10000;
-        box = new NineSliceBox(GFX.Game["ui/infoBox"], 99, 21, tileSize: 3);
+        box = new NineSliceBox("ui/infoBox", 99, 21, tileSize: 3);
         Add(box);
     }
 

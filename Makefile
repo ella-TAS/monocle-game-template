@@ -76,7 +76,7 @@ Game/Content/Effects/%.fxb: Game/Content/Effects/%.fx
 	wine util/fxc/fxc.exe /T fx_2_0 $< /Fo $@
 
 crunch:
-	util/crunch Game/Content/Atlases/ Game/Content/Graphics/ -d
+	util/crunch Game/Content/Atlases/ Game/Content/Graphics/ -d -p2
 
 clean:
 	rm -f *.zip
