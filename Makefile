@@ -8,6 +8,8 @@ release_wasm=Game/bin/Release/net10.0/publish
 
 FX := $(wildcard Game/Content/Effects/*.fx)
 FXB := $(FX:.fx=.fxb)
+#ENUMDATA := $(wildcard Game/Content/Data/*.json)
+#ENUMCS := $(ENUMDATA:Game/Content/Data/%.json=Game/Data/Generated/%.cs)
 
 watch: artifacts
 	LD_LIBRARY_PATH="$(PWD)/fnalibs/lib64/" dotnet watch --project Game/Game.csproj
@@ -74,6 +76,9 @@ artifacts: $(FXB) crunch
 
 Game/Content/Effects/%.fxb: Game/Content/Effects/%.fx
 	wine util/fxc/fxc.exe /T fx_2_0 $< /Fo $@
+
+#Game/Data/Generated/%.cs: Game/Content/Data/%.json
+#	python3 util/enum_generator.py $< $@
 
 crunch:
 	util/crunch Game/Content/Atlases/ Game/Content/Graphics/ -d -p2
