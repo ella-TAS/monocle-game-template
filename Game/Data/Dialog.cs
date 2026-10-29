@@ -11,8 +11,10 @@ public static partial class Dialog {
 
     [GeneratedRegex("^\\[(\\w+)\\]([^\\[]*)$", RegexOptions.Multiline)]
     private static partial Regex DialogRegex();
-
-    private const string FILE = "Dialog/English.txt";
+    [GeneratedRegex("^#.*$", RegexOptions.Multiline)]
+    private static partial Regex CommentRegex();
+    [GeneratedRegex("(?:\\n\\s*)+\\n")]
+    private static partial Regex NewlineRegex();
 
     // dialog modifiers
     private const string MOD_NEWLINE = "{n}";
@@ -32,11 +34,22 @@ public static partial class Dialog {
         foreach (Match match in matches) {
             if (!Data.TryAdd(
                 match.Groups[1].Value,
-                match.Groups[2].Value.Trim().ReplaceLineEndings("\n")
+                PrepareText(match.Groups[2].Value)
             )) {
                 Logger.DebugCrash("Dialog", $"Duplicate dialog key [{match.Groups[1].Value}] in {Language}");
             }
         }
+
+        foreach (KeyValuePair<string, string> kv in Data) {
+            Logger.Log($"[{kv.Key}] {kv.Value}");
+        }
+    }
+
+    private static string PrepareText(string raw) {
+        raw = raw.ReplaceLineEndings("\n");
+        raw = CommentRegex().Replace(raw, "");
+        raw = NewlineRegex().Replace(raw.Trim(), "\n");
+        return raw;
     }
 
     public static string Get(string key) {

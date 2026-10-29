@@ -2,8 +2,12 @@
 my dialog
 my dialog line 2
 here dilaog ends
+# this is a comment line
+# this is another comment
+next dialog line
 
 
+ee
 
 [dialoganotherstriung]
 dialog
@@ -17,3 +21,4 @@ dialog
 [my_dialog]
 dialog
 [new]dialog test
+# this is the last comment
