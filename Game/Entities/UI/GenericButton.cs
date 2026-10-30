@@ -8,10 +8,10 @@ public abstract class GenericButton : Entity {
     public bool Hovering;
     public bool Clicked;
 
-    public GenericButton(Vector2 center, float width, float height, Action ReleaseAction) : base(center) {
+    public GenericButton(Vector2 center, float width, float height, Action releaseAction) : base(center) {
         Collider = new Hitbox(width, height);
         Collider.CenterOrigin();
-        ButtonAction = ReleaseAction;
+        ButtonAction = releaseAction;
     }
 
     public override void Update() {
