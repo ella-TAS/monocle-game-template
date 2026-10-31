@@ -12,7 +12,7 @@ SUCCESS = 0
 FAIL = 1
 
 default_chars = " !\"#$%&'()*+,-./0123456789:;<=>?@ABCDEFGHIJKLMNOPQRSTUVWXYZ[\\]^_`abcdefghijklmnopqrstuvwxyz{|}~\0"
-extra_chars = "ÄÖÜßäöüẞЁё\0\0\0\0\0\0АБВГДЕЖЗИЙКЛМНОПРСТУФХЦЧШЩЪЫЬЭЮЯабвгдежзийклмнопрстуфхцчшщъыьэюя"
+extra_chars = "ÀÁÂ\0ÄÅ\0\0ÈÉÊËÌÍÎÏ\0\0ÒÓÔ\0Ö\0\0ÙÚÛÜ\0ẞßàáâ\0äå\0\0èéêëìíîï\0\0òóô\0ö\0\0ùúûü\0ЁёАБВГДЕЖЗИЙКЛМНОПРСТУФХЦЧШЩЪЫЬЭЮЯабвгдежзийклмнопрстуфхцчшщъыьэюя"
 
 if len(argv) != 6 and len(argv) != 5:
     print(f"Usage: python3 {argv[0]} FILE TILE_WIDTH TILE_HEIGHT SPACING [EXTENDED]")
