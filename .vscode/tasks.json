@@ -3,7 +3,7 @@
     "tasks": [
         {
             "label": "build",
-            "command": "make",
+            "command": "make run",
             "type": "shell",
             "problemMatcher": "$msCompile",
             "group": {

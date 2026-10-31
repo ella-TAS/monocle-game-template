@@ -29,6 +29,8 @@ public static class DevCommands {
         Engine.Commands.FunctionKeyActions[3] = Game.ToggleFullscreen;
         // F5: reload scene
         Engine.Commands.FunctionKeyActions[4] = () => Engine.Scene = new GameScene();
+        // F8: open font tester
+        // Engine.Commands.FunctionKeyActions[7] = () => Engine.Scene = new FontTesterScene();
         // F12: clear save data
         Engine.Commands.FunctionKeyActions[11] = SaveData.Reset;
     }

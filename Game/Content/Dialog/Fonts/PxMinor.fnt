@@ -103,7 +103,47 @@
         <char id="125" x="117" y="60" width="3" height="12" xoffset="0" yoffset="0" xadvance="4" page="0" chnl="15" />
         <char id="126" x="126" y="60" width="5" height="12" xoffset="0" yoffset="0" xadvance="6" page="0" chnl="15" />
     </chars>
-    <kernings count="1">
-        <kerning first="32" second="32" amount="-1" />
+    <kernings count="2">
+        <kerning first="47" second="47" amount="-1" /> <!-- // -->
+        <kerning first="70" second="44" amount="-1" /> <!-- F. -->
+        <kerning first="70" second="46" amount="-1" /> <!-- F, -->
+        <kerning first="70" second="59" amount="-1" /> <!-- F; -->
+        <kerning first="70" second="106" amount="-1" /> <!-- Fj -->
+        <kerning first="76" second="84" amount="-1" /> <!-- LT -->
+        <kerning first="80" second="44" amount="-1" /> <!-- P. -->
+        <kerning first="80" second="46" amount="-1" /> <!-- P, -->
+        <kerning first="80" second="59" amount="-1" /> <!-- P; -->
+        <kerning first="80" second="106" amount="-1" /> <!-- Pj -->
+        <kerning first="84" second="44" amount="-1" /> <!-- T. -->
+        <kerning first="84" second="46" amount="-1" /> <!-- T, -->
+        <kerning first="84" second="59" amount="-1" /> <!-- T; -->
+        <kerning first="84" second="74" amount="-1" /> <!-- TJ -->
+        <kerning first="84" second="97" amount="-1" /> <!-- Ta -->
+        <kerning first="84" second="99" amount="-1" /> <!-- Tc -->
+        <kerning first="84" second="101" amount="-1" /> <!-- Te -->
+        <kerning first="84" second="103" amount="-1" /> <!-- Tg -->
+        <kerning first="84" second="106" amount="-1" /> <!-- Tj -->
+        <kerning first="84" second="109" amount="-1" /> <!-- Tm -->
+        <kerning first="84" second="110" amount="-1" /> <!-- Tn -->
+        <kerning first="84" second="111" amount="-1" /> <!-- To -->
+        <kerning first="84" second="112" amount="-1" /> <!-- Tp -->
+        <kerning first="84" second="113" amount="-1" /> <!-- Tq -->
+        <kerning first="84" second="114" amount="-1" /> <!-- Tr -->
+        <kerning first="84" second="115" amount="-1" /> <!-- Ts -->
+        <kerning first="84" second="117" amount="-1" /> <!-- Tu -->
+        <kerning first="84" second="118" amount="-1" /> <!-- Tv -->
+        <kerning first="84" second="119" amount="-1" /> <!-- Tw -->
+        <kerning first="84" second="120" amount="-1" /> <!-- Tx -->
+        <kerning first="84" second="121" amount="-1" /> <!-- Ty -->
+        <kerning first="84" second="122" amount="-1" /> <!-- Tz -->
+        <kerning first="102" second="44" amount="-1" /> <!-- f. -->
+        <kerning first="102" second="46" amount="-1" /> <!-- f, -->
+        <kerning first="102" second="59" amount="-1" /> <!-- f; -->
+        <kerning first="102" second="102" amount="-1" /> <!-- ff -->
+        <kerning first="102" second="106" amount="-1" /> <!-- fj -->
+        <kerning first="114" second="44" amount="-1" /> <!-- r. -->
+        <kerning first="114" second="46" amount="-1" /> <!-- r, -->
+        <kerning first="114" second="59" amount="-1" /> <!-- r; -->
+        <kerning first="116" second="116" amount="-1" /> <!-- tt -->
     </kernings>
 </font>

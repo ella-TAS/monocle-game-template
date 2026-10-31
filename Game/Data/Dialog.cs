@@ -9,11 +9,11 @@ public static partial class Dialog {
         English
     };
 
-    [GeneratedRegex("^\\[(\\w+)\\]([^\\[]*)$", RegexOptions.Multiline)]
+    [GeneratedRegex(@"^\[(\w+)\]([^\[]*)$", RegexOptions.Multiline)]
     private static partial Regex DialogRegex();
-    [GeneratedRegex("^#.*$", RegexOptions.Multiline)]
+    [GeneratedRegex(@"^#.*$", RegexOptions.Multiline)]
     private static partial Regex CommentRegex();
-    [GeneratedRegex("(?:\\n\\s*)+\\n")]
+    [GeneratedRegex(@"(?:\n\s*)+\n")]
     private static partial Regex NewlineRegex();
 
     // dialog modifiers
@@ -59,7 +59,7 @@ public static partial class Dialog {
     public static string GetLine(string key, int line = 0) {
         string[] lines = Get(key).Split("\n");
         if (line >= lines.Length) {
-            Logger.DebugCrash("Dialog", $"Too few lines in dialog key [{key}] in {Language}: {lines.Length} present, {line} requested");
+            Logger.DebugCrash("Dialog", $"Too few lines in dialog key [{key}] in {Language}: {lines.Length} present, {line + 1} requested");
             return string.Empty;
         }
         return lines[line].Replace(MOD_NEWLINE, "\n");

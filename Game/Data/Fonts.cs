@@ -7,11 +7,13 @@ public static class Fonts {
     public static PixelFont Minor;
     public static PixelFont MinorBold;
     public static PixelFont Medion;
+    public static PixelFont MedionBold;
 
     public static void Load() {
         Nano = new PixelFont("Dialog/Fonts/PxNano.fnt");
         Minor = new PixelFont("Dialog/Fonts/PxMinor.fnt");
         MinorBold = new PixelFont("Dialog/Fonts/PxMinorBold.fnt");
         Medion = new PixelFont("Dialog/Fonts/PxMedion.fnt");
+        MedionBold = new PixelFont("Dialog/Fonts/PxMedionBold.fnt");
     }
 }

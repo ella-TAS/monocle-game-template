@@ -104,6 +104,10 @@
         <char id="126" x="98" y="40" width="5" height="8" xoffset="0" yoffset="0" xadvance="6" page="0" chnl="15" />
     </chars>
     <kernings count="1">
-        <kerning first="32" second="32" amount="-1" />
+        <kerning first="47" second="47" amount="-1" /> <!-- // -->
+        <kerning first="70" second="106" amount="-1" /> <!-- Fj -->
+        <kerning first="80" second="106" amount="-1" /> <!-- Pj -->
+        <kerning first="84" second="106" amount="-1" /> <!-- Tj -->
+        <kerning first="102" second="106" amount="-1" /> <!-- fj -->
     </kernings>
 </font>
