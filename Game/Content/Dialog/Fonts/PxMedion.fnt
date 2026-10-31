@@ -103,7 +103,7 @@
         <char id="125" x="156" y="90" width="4" height="18" xoffset="0" yoffset="0" xadvance="5" page="0" chnl="15" />
         <char id="126" x="168" y="90" width="9" height="18" xoffset="0" yoffset="0" xadvance="10" page="0" chnl="15" />
     </chars>
-    <kernings count="1">
+    <kernings count="42">
         <kerning first="47" second="47" amount="-1" /> <!-- // -->
         <kerning first="70" second="44" amount="-1" /> <!-- F. -->
         <kerning first="70" second="46" amount="-1" /> <!-- F, -->
