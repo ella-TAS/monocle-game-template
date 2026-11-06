@@ -1,8 +1,8 @@
 diff --git a/Engine.cs b/Engine.cs
-index 3590ef2..60da403 100644
+index 26095d7..a42da9d 100644
 --- a/Engine.cs
 +++ b/Engine.cs
-@@ -232,7 +232,6 @@ namespace Monocle {
+@@ -234,7 +234,6 @@ namespace Monocle {
              IsFixedTimeStep = false;
              ExitOnEscapeKeypress = true;
  

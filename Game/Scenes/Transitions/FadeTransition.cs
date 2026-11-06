@@ -16,8 +16,8 @@ public class FadeTransition : SceneTransition {
 
         Draw.SpriteBatch.Begin(SpriteSortMode.Deferred, BlendState.AlphaBlend, SamplerState.PointClamp, DepthStencilState.None, RasterizerState.CullNone);
 
-        Draw.SpriteBatch.Draw(FromBuffer, Engine.ViewportPosition, Color.White);
-        Draw.SpriteBatch.Draw(ToBuffer, Engine.ViewportPosition, Color.White * Progress);
+        Draw.SpriteBatch.Draw(FromBuffer, Vector2.Zero, Color.White);
+        Draw.SpriteBatch.Draw(ToBuffer, Vector2.Zero, Color.White * Progress);
 
         Draw.SpriteBatch.End();
     }

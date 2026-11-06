@@ -7,7 +7,7 @@ public class Parallax : Backdrop {
     private readonly MTexture texture;
     public bool LoopX;
 
-    public Parallax(Vector2 position, Vector2 justify, string path, Vector2 scroll, bool loopX) {
+    public Parallax(string path, Vector2 position = default, Vector2 justify = default, Vector2 scroll = default, bool loopX = true) {
         Scroll = scroll;
         texture = GFX.Game["background/" + path];
         LoopX = loopX;

@@ -4,7 +4,7 @@ using Monocle;
 namespace Gamespace;
 
 public class Backdrop {
-    public bool Visible;
+    public bool Visible = true;
     public Vector2 Position;
     public Vector2 Scroll;
 

@@ -31,7 +31,7 @@ if not type(json) is dict and not type(json) is list:
 
 elements = list(json)
 with open(out_path, "w+") as w:
-    w.write("namespace MediaGame;\n\n")
+    w.write("namespace Gamespace;\n\n")
     w.write("public enum " + name + " {\n")
     for item in sorted(elements):
         w.write(f"    {item},\n")
