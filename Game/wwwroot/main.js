@@ -41,7 +41,6 @@ console.log("dotnet initialized");
 infoText.textContent = "Starting Game";
 console.log("Init...");
 await exports.Program.Init();
-infoText.remove();
 
 console.log("MainLoop...");
 const main = async () => {
@@ -56,4 +55,5 @@ const main = async () => {
 	requestAnimationFrame(main);
 }
 // repeatedly run Program main loop
+infoText.remove();
 requestAnimationFrame(main);
