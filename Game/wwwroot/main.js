@@ -1,7 +1,9 @@
 const wasm = await eval(`import("./_framework/dotnet.js")`);
 const dotnet = wasm.dotnet;
 
-console.debug("initializing dotnet");
+const infoText = document.getElementById("info");
+infoText.textContent = "Initializing .NET";
+console.log("initializing dotnet");
 const runtime = await dotnet.withConfig({}).create();
 
 const config = runtime.getConfig();
@@ -25,25 +27,28 @@ let writable = await file.createWritable();
 await writable.write(new TextEncoder().encode("test data")); // or pipeTo a readablestream from Response.body etc
 await writable.close();
 
-console.debug("PreInit...");
+console.log("PreInit...");
 await runtime.runMain();
 
 // find content base folder
+infoText.textContent = "Loading Content";
 var loc = window.location.pathname;
 var dir = loc.substring(0, loc.lastIndexOf('/'));
 const files = await fetch("./Content/manifest.json").then(r => r.json());
 await exports.Program.PreInit(dir, files);
-console.debug("dotnet initialized");
+console.log("dotnet initialized");
 
-console.debug("Init...");
+infoText.textContent = "Starting Game";
+console.log("Init...");
 await exports.Program.Init();
+infoText.remove();
 
-console.debug("MainLoop...");
+console.log("MainLoop...");
 const main = async () => {
 	const ret = await exports.Program.MainLoop(window.innerWidth, window.innerHeight);
 
 	if (!ret) {
-		console.debug("Cleanup...");
+		console.log("Cleanup...");
 		await exports.Program.Cleanup();
 		return;
 	}
