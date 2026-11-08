@@ -31,17 +31,17 @@ console.log("PreInit...");
 await runtime.runMain();
 
 // find content base folder
-infoText.textContent = "Loading Content";
+infoText.textContent = "Initializing Game";
 var loc = window.location.pathname;
 var dir = loc.substring(0, loc.lastIndexOf('/'));
 const files = await fetch("./Content/manifest.json").then(r => r.json());
-await exports.Program.PreInit(dir, files, str => infoText.textContent = str);
+await exports.Program.PreInit(dir, files);
 console.log("dotnet initialized");
 
-infoText.textContent = "Starting Game";
 console.log("Init...");
 await exports.Program.Init();
 
+infoText.textContent = "Loading Content";
 console.log("MainLoop...");
 const main = async () => {
 	const ret = await exports.Program.MainLoop(window.innerWidth, window.innerHeight);
@@ -52,8 +52,8 @@ const main = async () => {
 		return;
 	}
 
+	infoText.remove();
 	requestAnimationFrame(main);
 }
 // repeatedly run Program main loop
-infoText.remove();
 requestAnimationFrame(main);

@@ -29,11 +29,7 @@ partial class Program {
     private static int lastWidth, lastHeight;
 
     [JSExport]
-    internal static Task PreInit(
-        string basePath,
-        string[] contentPaths,
-        [JSMarshalAs<JSType.Function<JSType.String>>] Action<string> report
-    ) {
+    internal static Task PreInit(string basePath, string[] contentPaths) {
         return Task.Run(() => {
             Console.WriteLine("calling mount_opfs");
             int ret = Emscripten.mount_opfs();
@@ -49,7 +45,6 @@ partial class Program {
 
             Emscripten.MountFetch(0, basePath + "/Content", "./Content");
             foreach (string path in contentPaths) {
-                report("Loading Content/" + path);
                 if (path.EndsWith('/')) {
                     Emscripten.MountFetchDir(0, "./Content/" + path);
                 } else {
