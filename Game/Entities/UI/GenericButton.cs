@@ -1,14 +1,16 @@
+#nullable enable
+
 using Microsoft.Xna.Framework;
 using Monocle;
 
 namespace Gamespace;
 
 public abstract class GenericButton : Entity {
-    public Action ButtonAction;
+    public Action? ButtonAction;
     public bool Hovering;
     public bool Clicked;
 
-    public GenericButton(Vector2 center, float width, float height, Action releaseAction) : base(center) {
+    public GenericButton(Vector2 center, float width, float height, Action? releaseAction = null) : base(center) {
         Collider = new Hitbox(width, height);
         Collider.CenterOrigin();
         ButtonAction = releaseAction;
@@ -17,7 +19,7 @@ public abstract class GenericButton : Entity {
     public override void Update() {
         base.Update();
 
-        if (Collider.Collide(Scene.MousePosition)) {
+        if (Collider!.Collide(Scene!.MousePosition)) {
             // hover start
             if (!Hovering) {
                 Hovering = true;
@@ -60,6 +62,6 @@ public abstract class GenericButton : Entity {
     }
 
     public virtual void OnRelease() {
-        ButtonAction();
+        ButtonAction?.Invoke();
     }
 }
