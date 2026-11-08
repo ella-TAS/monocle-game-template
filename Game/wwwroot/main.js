@@ -35,7 +35,7 @@ infoText.textContent = "Loading Content";
 var loc = window.location.pathname;
 var dir = loc.substring(0, loc.lastIndexOf('/'));
 const files = await fetch("./Content/manifest.json").then(r => r.json());
-await exports.Program.PreInit(dir, files);
+await exports.Program.PreInit(dir, files, str => infoText.textContent = str);
 console.log("dotnet initialized");
 
 infoText.textContent = "Starting Game";
