@@ -71,7 +71,7 @@ publish-all: publish-linux publish-win publish-wasm
 
 prepare-publish: qa artifacts git-reset clean
 
-artifacts: $(FXB) crunch
+artifacts: $(FXB) crunch #$(ENUMCS)
 	# All artifacts up-to-date
 
 Game/Content/Effects/%.fxb: Game/Content/Effects/%.fx
@@ -86,6 +86,8 @@ crunch:
 clean:
 	rm -f *.zip
 	rm -f Game/Content/Atlases/.hash
+	rm -f Game/Content/Effects/*.fxb
+	rm -f Game/Data/Generated/*.cs
 	rm -rf $(release_linux)
 	rm -rf $(release_win)
 	rm -rf $(release_wasm)
