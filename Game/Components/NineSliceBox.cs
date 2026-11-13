@@ -3,25 +3,26 @@ using Monocle;
 
 namespace Gamespace;
 
-public class NineSliceBox : Component {
-    public Vector2 Position;
-    public Vector2 Origin;
+public class NineSliceBox : GraphicsComponent {
     public int Width;
     public int Height;
     private readonly MTexture[,] nineSlice;
-    private readonly int tileSize;
+    private readonly Point tileSize;
 
-    public NineSliceBox(string path, int boxWidth, int boxHeight, Vector2 offset = default, int tileSize = 8) : base(false, true) {
+    public NineSliceBox(string path, int boxWidth, int boxHeight, Vector2 offset = default) : base(true) {
         Position = offset;
         Width = boxWidth;
         Height = boxHeight;
-        this.tileSize = tileSize;
 
         nineSlice = new MTexture[3, 3];
         MTexture texture = GFX.Game[path];
-        for (int y = 0; y < 3; y++) {
-            for (int x = 0; x < 3; x++) {
-                nineSlice[x, y] = texture.GetSubtexture(new Rectangle(x * tileSize, y * tileSize, tileSize, tileSize));
+        if (texture.Width % 3 != 0 || texture.Height % 3 != 0) {
+            Logger.DebugCrash("NineSliceBox", $"Texture ({path}) dimensions not divisible by 3.");
+        }
+        tileSize = (new Vector2(texture.Width, texture.Height) / 3).RoundToPoint();
+        for (int r = 0; r < 3; r++) {
+            for (int c = 0; c < 3; c++) {
+                nineSlice[r, c] = texture.GetSubtexture(new Rectangle(c * tileSize.X, r * tileSize.Y, tileSize.X, tileSize.Y));
             }
         }
     }
@@ -29,46 +30,31 @@ public class NineSliceBox : Component {
     public override void Render() {
         base.Render();
 
-        Vector2 drawPos = (Entity.Position + Position - Origin).Round();
-        Vector2 offset = Vector2.Zero;
+        Vector2 drawPos = RenderPosition - Origin * Scale;
 
-        // first row
-        nineSlice[0, 0].Draw(drawPos + offset);
-        offset.X += tileSize;
+        int rows = (int) MathF.Ceiling((float) Height / tileSize.Y);
+        int cols = (int) MathF.Ceiling((float) Width / tileSize.X);
 
-        for (; offset.X < Width - tileSize; offset.X += tileSize) {
-            nineSlice[1, 0].Draw(drawPos + offset);
-        }
 
-        offset.X = Width - tileSize;
-        nineSlice[2, 0].Draw(drawPos + offset);
-        offset.Y += tileSize;
-
-        // middle rows
-        for (; offset.Y < Height - tileSize; offset.Y += tileSize) {
-            offset.X = 0f;
-            nineSlice[0, 1].Draw(drawPos + offset);
-            offset.X += tileSize;
-
-            for (; offset.X < Width - tileSize; offset.X += tileSize) {
-                nineSlice[1, 1].Draw(drawPos + offset);
+        for (int r = 0; r < rows; r++) {
+            for (int c = 0; c < cols; c++) {
+                Vector2 offset = new Vector2(c * tileSize.X * Scale.X, r * tileSize.Y * Scale.Y);
+                if (c == cols - 1 && cols > 1) offset.X = (Width - tileSize.X) * Scale.X;
+                if (r == rows - 1 && rows > 1) offset.Y = (Height - tileSize.Y) * Scale.Y;
+                // TODO: Rotation isn't as simple as the following, but could be done
+                // selectTile(r, c, rows, cols).Draw(offset.Rotate(Rotation), (-drawPos / Scale).Rotate(-Rotation), Color, Scale, Rotation);
+                selectTile(r, c, rows, cols).Draw(offset, -drawPos / Scale, Color, Scale);
             }
-
-            offset.X = Width - tileSize;
-            nineSlice[2, 1].Draw(drawPos + offset);
         }
+    }
 
-        // last row
-        offset = new Vector2(0f, Height - tileSize);
-        nineSlice[0, 2].Draw(drawPos + offset);
-        offset.X += tileSize;
+    private MTexture selectTile(int r, int c, int rows, int cols) {
+        return nineSlice[selectIndex(r, rows), selectIndex(c, cols)];
+    }
 
-        for (; offset.X < Width - tileSize; offset.X += tileSize) {
-            nineSlice[1, 2].Draw(drawPos + offset);
-        }
-
-        offset.X = Width - tileSize;
-        nineSlice[2, 2].Draw(drawPos + offset);
+    private static int selectIndex(int i, int len) {
+        if (i == 0) return 0;
+        return i < len - 1 ? 1 : 2;
     }
 
     public void CenterOrigin() {

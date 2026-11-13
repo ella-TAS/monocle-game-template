@@ -1,4 +1,6 @@
-﻿using Microsoft.Xna.Framework;
+﻿#nullable enable
+
+using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Monocle;
 using System.Diagnostics;
@@ -23,7 +25,7 @@ class Game : Engine {
     protected override void Initialize() {
         // required if using multiple renderers
         GraphicsDevice.PresentationParameters.RenderTargetUsage = RenderTargetUsage.PreserveContents;
-        Graphics.ApplyChanges();
+        Graphics?.ApplyChanges();
 
         base.Initialize();
         Tags.Init();
@@ -57,8 +59,12 @@ class Game : Engine {
 
     protected override void Update(GameTime gameTime) {
         base.Update(gameTime);
+    }
 
+    public override void OnSceneTransition(Scene? from, Scene? to) {
+        base.OnSceneTransition(from, to);
 
+        SaveData.Save();
     }
 
     protected override void OnExiting(object sender, EventArgs args) {
@@ -69,7 +75,7 @@ class Game : Engine {
     }
 
     public static void ToggleFullscreen() {
-        if (Graphics.IsFullScreen) {
+        if (Graphics?.IsFullScreen ?? false) {
             SetWindowed(1280, 720);
         } else {
             SetFullscreen();

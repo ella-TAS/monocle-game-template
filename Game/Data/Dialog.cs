@@ -51,7 +51,7 @@ public static partial class Dialog {
     public static string Get(string key) {
         if (!Data.TryGetValue(key, out string value)) {
             Logger.DebugCrash("Dialog", $"Missing dialog key [{key}] in {Language}");
-            return string.Empty;
+            return $"[{key}]";
         }
         return value;
     }
@@ -60,7 +60,7 @@ public static partial class Dialog {
         string[] lines = Get(key).Split("\n");
         if (line >= lines.Length) {
             Logger.DebugCrash("Dialog", $"Too few lines in dialog key [{key}] in {Language}: {lines.Length} present, {line + 1} requested");
-            return string.Empty;
+            return $"[{key}]";
         }
         return lines[line].Replace(MOD_NEWLINE, "\n");
     }
