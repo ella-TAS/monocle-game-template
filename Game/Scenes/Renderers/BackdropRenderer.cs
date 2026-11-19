@@ -16,7 +16,7 @@ public class BackdropRenderer : Renderer {
     }
 
     public override void Render(Scene scene) {
-        Draw.SpriteBatch.Begin(SpriteSortMode.Deferred, BlendState.AlphaBlend, SamplerState.LinearClamp, DepthStencilState.None, RasterizerState.CullNone, Effect, Engine.ScreenMatrix);
+        Draw.SpriteBatch.Begin(SpriteSortMode.Deferred, BlendState.AlphaBlend, SamplerState.PointClamp, DepthStencilState.None, RasterizerState.CullNone, Effect, Engine.ScreenMatrix);
 
         foreach (Backdrop backdrop in Backdrops)
             if (backdrop.Visible)

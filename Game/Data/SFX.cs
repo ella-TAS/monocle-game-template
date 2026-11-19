@@ -17,8 +17,8 @@ public static class SFX {
         return Engine.Instance.Content.Load<SoundEffect>("Audio/SFX/" + name);
     }
 
-    private static SoundEffect loadLooping(string name) {
-        return Engine.Instance.Content.Load<SoundEffect>("Audio/Looping/" + name);
+    private static SoundEffect loadMusic(string name) {
+        return Engine.Instance.Content.Load<SoundEffect>("Audio/Music/" + name);
     }
 
     public static SoundEffectInstance Play(SoundEffect sfx, float volume) {

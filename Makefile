@@ -69,7 +69,7 @@ publish-win: prepare-publish
 
 publish-all: publish-linux publish-win publish-wasm
 
-prepare-publish: qa artifacts git-reset clean
+prepare-publish: qa git-reset clean artifacts
 
 artifacts: $(FXB) crunch #$(ENUMCS)
 	# All artifacts up-to-date

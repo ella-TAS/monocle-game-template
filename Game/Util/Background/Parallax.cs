@@ -7,10 +7,10 @@ public class Parallax : Backdrop {
     private readonly MTexture texture;
     public bool LoopX;
 
-    public Parallax(string path, Vector2 position = default, Vector2 justify = default, Vector2 scroll = default, bool loopX = true) {
+    public Parallax(string path, Vector2 position = default, Vector2 justify = default, Vector2 scroll = default, bool? loopX = null) {
         Scroll = scroll;
         texture = GFX.Game["background/" + path];
-        LoopX = loopX;
+        LoopX = loopX ?? scroll.X != 0;
         Position = position - new Vector2(justify.X * texture.Width, justify.Y * texture.Height);
     }
 
